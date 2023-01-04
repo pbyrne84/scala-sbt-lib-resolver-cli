@@ -1,0 +1,126 @@
+{
+  "defaultProductionVersionRegex": "([\\d\\.]+)",
+  "maximumPagesToPaginate": 2,
+  "retryCount" : 6,
+  "hotList": [
+    {
+      "name": "zio-app",
+      "refs": [
+        "circe",
+        "logback",
+        "logstash-logback",
+        "zio",
+        "wiremock",
+        "scoverage",
+        "scalafmt"
+      ]
+    },
+    {
+      "name": "test-single",
+      "refs": [
+        "assembly"
+      ]
+    }
+  ],
+  "libs": [
+    {
+      "name": "circe",
+      "org": "io.circe",
+      "modules": [
+        {
+          "name": "circe-core"
+        },
+        {
+          "name": "circe-parser"
+        },
+        {
+          "name": "circe-generic"
+        }
+      ]
+    },
+    {
+      "name": "logback",
+      "org": "ch.qos.logback",
+      "modules": [
+        {
+          "name": "logback-classic",
+          "isScala": false
+        }
+      ]
+    },
+    {
+      "name": "logstash-logback",
+      "org": "net.logstash.logback",
+      "modules": [
+        {
+          "name": "logstash-logback-encoder",
+          "isScala" : false
+        }
+      ]
+    },
+    {
+      "name": "zio",
+      "org": "dev.zio",
+      "modules": [
+        {
+          "name": "zio-logging-slf4j"
+        },
+        {
+          "name": "zio-config-typesafe"
+        },
+        {
+          "name": "zio"
+        },
+        {
+          "name": "zio-test",
+          "isTestScope": true
+        },
+        {
+          "name": "zio-test-sbt",
+          "isTestScope": true
+        }
+      ]
+    },
+    {
+      "name": "scoverage",
+      "org": "org.scoverage",
+      "modules": [
+        {
+          "name": "sbt-scoverage",
+          "isSbtPlugin" : true
+        }
+      ]
+    },
+    {
+      "name": "scalafmt",
+      "org": "org.scalameta",
+      "modules": [
+        {
+          "name": "sbt-scalafmt",
+          "isSbtPlugin" : true
+        }
+      ]
+    },
+    {
+      "name": "assembly",
+      "org": "com.eed3si9n",
+      "modules": [
+        {
+          "name": "sbt-assembly",
+          "isSbtPlugin" : true
+        }
+      ]
+    },
+    {
+      "name": "wiremock",
+      "org": "com.github.tomakehurst",
+      "modules": [
+        {
+          "name": "wiremock",
+          "isTestScope": true,
+          "isScala" : false
+        }
+      ]
+    }
+  ]
+}

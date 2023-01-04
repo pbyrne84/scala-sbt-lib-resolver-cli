@@ -1,0 +1,2437 @@
+
+{
+  "responseHeader": {
+    "status": 0,
+    "QTime": 0,
+    "params": {
+      "q": "g:io.circe",
+      "core": "",
+      "indent": "off",
+      "spellcheck": "true",
+      "fl": "id,g,a,latestVersion,p,ec,repositoryId,text,timestamp,versionCount",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc",
+      "spellcheck.count": "5",
+      "rows": "100",
+      "wt": "json",
+      "version": "2.2"
+    }
+  },
+  "response": {
+    "numFound": 591,
+    "start": 0,
+    "docs": [
+      {
+        "id": "io.circe:circe-yaml-common_2.12",
+        "g": "io.circe",
+        "a": "circe-yaml-common_2.12",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-yaml-common_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml-common_2.13",
+        "g": "io.circe",
+        "a": "circe-yaml-common_2.13",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-yaml-common_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml-common_3",
+        "g": "io.circe",
+        "a": "circe-yaml-common_3",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-yaml-common_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml-v12_2.12",
+        "g": "io.circe",
+        "a": "circe-yaml-v12_2.12",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-yaml-v12_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml-v12_2.13",
+        "g": "io.circe",
+        "a": "circe-yaml-v12_2.13",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-yaml-v12_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml-v12_3",
+        "g": "io.circe",
+        "a": "circe-yaml-v12_3",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-yaml-v12_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml_2.12",
+        "g": "io.circe",
+        "a": "circe-yaml_2.12",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 19,
+        "text": [
+          "io.circe",
+          "circe-yaml_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml_2.13",
+        "g": "io.circe",
+        "a": "circe-yaml_2.13",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 9,
+        "text": [
+          "io.circe",
+          "circe-yaml_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-yaml_3",
+        "g": "io.circe",
+        "a": "circe-yaml_3",
+        "latestVersion": "0.14.3-RC3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1671136824000,
+        "versionCount": 5,
+        "text": [
+          "io.circe",
+          "circe-yaml_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:sbt-circe-org724599971",
+        "g": "io.circe",
+        "a": "sbt-circe-org",
+        "latestVersion": "0.1.1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1668147505000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "sbt-circe-org",
+          ".pom",
+          ".jar"
+        ],
+        "ec": [
+          ".pom",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic-extras_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-generic-extras_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1666647466000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-generic-extras_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic-extras_2.13",
+        "g": "io.circe",
+        "a": "circe-generic-extras_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1666647465000,
+        "versionCount": 18,
+        "text": [
+          "io.circe",
+          "circe-generic-extras_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic-extras_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-generic-extras_sjs1_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1666647463000,
+        "versionCount": 9,
+        "text": [
+          "io.circe",
+          "circe-generic-extras_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic-extras_sjs1_2.12",
+        "g": "io.circe",
+        "a": "circe-generic-extras_sjs1_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1666647459000,
+        "versionCount": 9,
+        "text": [
+          "io.circe",
+          "circe-generic-extras_sjs1_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic-extras_2.12",
+        "g": "io.circe",
+        "a": "circe-generic-extras_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1666647456000,
+        "versionCount": 42,
+        "text": [
+          "io.circe",
+          "circe-generic-extras_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic-extras_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-generic-extras_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1666647455000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-generic-extras_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-jawn_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-jawn_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281601000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-jawn_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-numbers_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281599000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-numbers_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-core_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281588000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-core_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-jawn_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-jawn_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281586000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-jawn_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-pointer_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281579000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-pointer_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281577000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281572000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-shapes_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-shapes_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281563000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-shapes_native0.4_2.13",
+          "-sources.jar",
+          "-tests-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          "-tests.jar",
+          ".jar",
+          "-tests-javadoc.jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          "-tests-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          "-tests.jar",
+          ".jar",
+          "-tests-javadoc.jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-refined_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-refined_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281553000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-refined_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-pointer_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281538000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-pointer_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-parser_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281519000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-parser_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-refined_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-refined_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281492000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-refined_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-testing_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-testing_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281485000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-testing_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-numbers_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281481000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-numbers_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scodec_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-scodec_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281453000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-scodec_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers-testing_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-numbers-testing_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281428000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-numbers-testing_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-literal_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281425000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-literal_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-generic_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281420000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-generic_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-refined_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-refined_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281399000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-refined_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-numbers_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281391000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-numbers_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-testing_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-testing_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281391000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-testing_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-shapes_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-shapes_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281384000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-shapes_native0.4_2.12",
+          "-sources.jar",
+          "-tests-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          "-tests.jar",
+          ".jar",
+          "-tests-javadoc.jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          "-tests-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          "-tests.jar",
+          ".jar",
+          "-tests-javadoc.jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-generic_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281382000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-generic_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-core_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281353000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-core_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-parser_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281348000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-parser_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281348000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-pointer_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281335000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-pointer_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-testing_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-testing_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281333000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-testing_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-jawn_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-jawn_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281332000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-jawn_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-core_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281326000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-core_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-literal_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281310000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-literal_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers-testing_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-numbers-testing_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281310000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-numbers-testing_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_native0.4_2.13",
+        "g": "io.circe",
+        "a": "circe-literal_native0.4_2.13",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281301000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-literal_native0.4_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_3",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281294000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-generic_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281283000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-generic_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_3",
+        "g": "io.circe",
+        "a": "circe-literal_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281281000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-literal_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-literal_sjs1_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281264000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-literal_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-parser_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281260000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-parser_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_sjs1_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281257000,
+        "versionCount": 2,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scodec_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-scodec_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281248000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-scodec_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers-testing_native0.4_3",
+        "g": "io.circe",
+        "a": "circe-numbers-testing_native0.4_3",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281216000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-numbers-testing_native0.4_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scodec_native0.4_2.12",
+        "g": "io.circe",
+        "a": "circe-scodec_native0.4_2.12",
+        "latestVersion": "0.14.3",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1663281215000,
+        "versionCount": 1,
+        "text": [
+          "io.circe",
+          "circe-scodec_native0.4_2.12",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-testing_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-testing_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531189000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-testing_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-testing_3",
+        "g": "io.circe",
+        "a": "circe-testing_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531174000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-testing_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scodec_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-scodec_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531157000,
+        "versionCount": 5,
+        "text": [
+          "io.circe",
+          "circe-scodec_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scodec_3",
+        "g": "io.circe",
+        "a": "circe-scodec_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531148000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-scodec_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-refined_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-refined_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531135000,
+        "versionCount": 5,
+        "text": [
+          "io.circe",
+          "circe-refined_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-refined_3",
+        "g": "io.circe",
+        "a": "circe-refined_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531127000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-refined_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-pointer_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531115000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-pointer_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_3",
+        "g": "io.circe",
+        "a": "circe-pointer_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531100000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-pointer_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-parser_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531084000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-parser_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_3",
+        "g": "io.circe",
+        "a": "circe-parser_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531076000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-parser_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers-testing_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-numbers-testing_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531067000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-numbers-testing_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers-testing_3",
+        "g": "io.circe",
+        "a": "circe-numbers-testing_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531058000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-numbers-testing_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-numbers_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531045000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-numbers_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-numbers_3",
+        "g": "io.circe",
+        "a": "circe-numbers_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531037000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-numbers_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-generic_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531022000,
+        "versionCount": 5,
+        "text": [
+          "io.circe",
+          "circe-generic_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scalajs_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-scalajs_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626531004000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-scalajs_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-jawn_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-jawn_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530990000,
+        "versionCount": 3,
+        "text": [
+          "io.circe",
+          "circe-jawn_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-jawn_3",
+        "g": "io.circe",
+        "a": "circe-jawn_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530981000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-jawn_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_3",
+        "g": "io.circe",
+        "a": "circe-generic_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530968000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-generic_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-extras_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-extras_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530957000,
+        "versionCount": 3,
+        "text": [
+          "io.circe",
+          "circe-extras_sjs1_3",
+          "-javadoc.jar",
+          "-sources.jar",
+          ".jar",
+          ".pom"
+        ],
+        "ec": [
+          "-javadoc.jar",
+          "-sources.jar",
+          ".jar",
+          ".pom"
+        ]
+      },
+      {
+        "id": "io.circe:circe-extras_3",
+        "g": "io.circe",
+        "a": "circe-extras_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530948000,
+        "versionCount": 4,
+        "text": [
+          "io.circe",
+          "circe-extras_3",
+          "-javadoc.jar",
+          "-sources.jar",
+          ".jar",
+          ".pom"
+        ],
+        "ec": [
+          "-javadoc.jar",
+          "-sources.jar",
+          ".jar",
+          ".pom"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_sjs1_3",
+        "g": "io.circe",
+        "a": "circe-core_sjs1_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530934000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-core_sjs1_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_3",
+        "g": "io.circe",
+        "a": "circe-core_3",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626530909000,
+        "versionCount": 6,
+        "text": [
+          "io.circe",
+          "circe-core_3",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-refined_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-refined_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522501000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-refined_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-shapes_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-shapes_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522498000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-shapes_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-generic_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522495000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-generic_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-parser_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522488000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-parser_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522486000,
+        "versionCount": 10,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-testing_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-testing_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522478000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-testing_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scalajs_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-scalajs_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522476000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-scalajs_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-jawn_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-jawn_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522456000,
+        "versionCount": 3,
+        "text": [
+          "io.circe",
+          "circe-jawn_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-pointer_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522451000,
+        "versionCount": 10,
+        "text": [
+          "io.circe",
+          "circe-pointer_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-extras_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-extras_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522448000,
+        "versionCount": 10,
+        "text": [
+          "io.circe",
+          "circe-extras_sjs1_2.13",
+          "-javadoc.jar",
+          "-sources.jar",
+          ".jar",
+          ".pom"
+        ],
+        "ec": [
+          "-javadoc.jar",
+          "-sources.jar",
+          ".jar",
+          ".pom"
+        ]
+      },
+      {
+        "id": "io.circe:circe-scodec_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-scodec_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522440000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-scodec_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-literal_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522435000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-literal_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer_2.13",
+        "g": "io.circe",
+        "a": "circe-pointer_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522431000,
+        "versionCount": 10,
+        "text": [
+          "io.circe",
+          "circe-pointer_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_sjs1_2.13",
+        "g": "io.circe",
+        "a": "circe-core_sjs1_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522428000,
+        "versionCount": 13,
+        "text": [
+          "io.circe",
+          "circe-core_sjs1_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-literal_2.13",
+        "g": "io.circe",
+        "a": "circe-literal_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522420000,
+        "versionCount": 26,
+        "text": [
+          "io.circe",
+          "circe-literal_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-generic_2.13",
+        "g": "io.circe",
+        "a": "circe-generic_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522418000,
+        "versionCount": 26,
+        "text": [
+          "io.circe",
+          "circe-generic_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-parser_2.13",
+        "g": "io.circe",
+        "a": "circe-parser_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522411000,
+        "versionCount": 26,
+        "text": [
+          "io.circe",
+          "circe-parser_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-pointer-literal_2.13",
+        "g": "io.circe",
+        "a": "circe-pointer-literal_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522408000,
+        "versionCount": 10,
+        "text": [
+          "io.circe",
+          "circe-pointer-literal_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      },
+      {
+        "id": "io.circe:circe-core_2.13",
+        "g": "io.circe",
+        "a": "circe-core_2.13",
+        "latestVersion": "0.15.0-M1",
+        "repositoryId": "central",
+        "p": "jar",
+        "timestamp": 1626522403000,
+        "versionCount": 26,
+        "text": [
+          "io.circe",
+          "circe-core_2.13",
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ],
+        "ec": [
+          "-sources.jar",
+          ".pom",
+          "-javadoc.jar",
+          ".jar"
+        ]
+      }
+    ]
+  },
+  "spellcheck": {
+    "suggestions": []
+  }
+}

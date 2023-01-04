@@ -1,0 +1,2 @@
+GET https://search.maven.org/solrsearch/select?q=id:dev.zio*&rows=200&wt=json&core=gav
+Accept: application/json

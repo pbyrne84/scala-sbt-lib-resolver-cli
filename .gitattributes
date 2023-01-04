@@ -1,0 +1,6 @@
+*.scala text eol=lf
+*.sbt text eol=lf
+*.sh text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+bootstrap text eol=lf

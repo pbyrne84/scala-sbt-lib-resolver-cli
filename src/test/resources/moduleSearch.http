@@ -1,0 +1,2 @@
+GET https://search.maven.org/solrsearch/select?q=g:io.circe%20AND%20a:circe-yaml_2.13&core=gav&start=0&rows=9
+Accept: application/json

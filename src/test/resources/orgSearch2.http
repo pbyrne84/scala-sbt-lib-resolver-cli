@@ -1,0 +1,4 @@
+GET https://search.maven.org/solrsearch/select?q=a:zio-aws-machinelearning*&rows=200&wt=json&core=gav
+Accept: application/json
+
+//  https://search.maven.org/solrsearch/select?core=gav&q=id:a:zio-aws-machinelearning*&rows=200&start=0

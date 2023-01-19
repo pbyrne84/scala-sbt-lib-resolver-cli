@@ -1,14 +1,40 @@
 name: CI
-on:
-  push:
+on:  [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: olafurpg/setup-scala@v10
+      - uses: actions/checkout@v3
+      - uses: graalvm/setup-graalvm@v1
         with:
-          java-version: adopt@1.11
-      - name: Validate
-        run: sbt test
-
+          version: '22.3.0' #affects the json format of the agent
+          java-version: '11'
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run test and build
+        run: |
+          date
+          date +%s%N | cut -b1-13
+          echo "GRAALVM_HOME: $GRAALVM_HOME"
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version
+          gu --version
+          native-image --version
+          curl -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk version
+          sdk install scalacli
+          sbt test
+          sbt assembly
+          native-image  --no-server \
+            --no-fallback \
+            --allow-incomplete-classpath \
+            --report-unsupported-elements-at-runtime \
+            --static \
+            --initialize-at-build-time=scala.runtime.Statics \
+            -H:ConfigurationFileDirectories=src/main/resources/META-INF/native-image \
+            -H:+ReportExceptionStackTraces \
+            -H:TraceClassInitialization=true \
+            -jar target/scala-2.13/scala-sbt-lib-resolver-cli.jar
+          ls -l
+          ./scala-sbt-lib-resolver-cli --hotlist test-single

@@ -1,10 +1,19 @@
-name := "scala-project-generator"
+name := "scala-sbt-lib-resolver-cli"
 
 scalaVersion := "2.13.10"
 
 val zioVersion = "2.0.5"
 val zioLoggingVersion = "2.1.7"
 val circeVersion = "0.14.3"
+
+ThisBuild / assemblyMergeStrategy := {
+  case "application.conf" => MergeStrategy.concat
+  case PathList("module-info.class") => MergeStrategy.discard
+  case PathList("META-INF", "versions", xs @ _, "module-info.class") => MergeStrategy.discard
+  case x =>
+    val oldStrategy = (ThisBuild / assemblyMergeStrategy).value
+    oldStrategy(x)
+}
 
 addCompilerPlugin("io.tryp" % "splain" % "1.0.1" cross CrossVersion.patch)
 
@@ -32,3 +41,16 @@ Test / test := (Test / test)
   .dependsOn(Compile / scalafmtCheck)
   .dependsOn(Test / scalafmtCheck)
   .value
+
+lazy val jarName = "scala-sbt-lib-resolver-cli.jar"
+
+// Forking will allow the agent to run
+fork := true
+Test / javaOptions += "-agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image"
+
+lazy val nativeImageProject = (project in file("."))
+  .enablePlugins(NativeImagePlugin)
+  .settings(
+    Compile / mainClass := Some("com.pbyrne84.github.scala.github.mavensearchcli.MavenSearchCliApp"),
+    assembly / assemblyJarName := jarName
+  )

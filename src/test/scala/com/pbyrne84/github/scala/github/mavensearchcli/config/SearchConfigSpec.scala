@@ -9,7 +9,10 @@ object SearchConfigSpec extends BaseSpec {
   // usually we do not want explicit default parameter values but it can make things clearer in tests, especially booleans
   // noinspection RedundantDefaultArgument
   override def spec: Spec[TestEnvironment with Scope, Any] =
-    suite("CommandLineConfig")(
+    suite("SearchConfig")(
+      test("should parse from the resources folder") {
+        SearchConfig.readFromResource("config.json").map(result => assertTrue(result.isValid == true))
+      },
       test("should convert when there are no hotList entries") {
         val json =
           s"""

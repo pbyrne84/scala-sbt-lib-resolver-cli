@@ -1,4 +1,4 @@
-name := "scala-project-generator"
+name := "scala-sbt-lib-resolver-cli"
 
 scalaVersion := "2.13.10"
 

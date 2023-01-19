@@ -17,7 +17,7 @@ object MavenSearchCliApp extends ZIOAppDefault {
   import com.monovore.decline._
 
   private val hotListCommandLine = Opts.option[String](
-    long = "hotList",
+    long = "hotlist",
     short = "h",
     help = "A hotList is a list of configured references you want to group, more than one can be comma seperated"
   )

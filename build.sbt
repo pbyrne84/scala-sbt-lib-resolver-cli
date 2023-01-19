@@ -27,3 +27,8 @@ libraryDependencies ++= List(
 )
 
 testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
+
+Test / test := (Test / test)
+  .dependsOn(Compile / scalafmtCheck)
+  .dependsOn(Test / scalafmtCheck)
+  .value

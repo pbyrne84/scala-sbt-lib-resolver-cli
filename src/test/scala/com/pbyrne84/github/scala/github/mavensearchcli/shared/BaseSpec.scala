@@ -22,7 +22,7 @@ object BaseSpec {
 abstract class BaseSpec extends ZIOSpec[SharedDeps] {
   override def bootstrap = BaseSpec.sharedLayer
 
-  protected  def reset: ZIO[ MavenWireMock, Throwable, Unit ] = {
+  protected def reset: ZIO[MavenWireMock, Throwable, Unit] = {
     MavenWireMock.reset
   }
 

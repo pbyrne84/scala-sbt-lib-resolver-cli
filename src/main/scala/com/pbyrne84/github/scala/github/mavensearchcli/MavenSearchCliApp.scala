@@ -8,6 +8,8 @@ import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   NowProvider,
   SearchParams
 }
+import com.typesafe.config.impl.ConfigImpl
+import com.typesafe.config.{Config, ConfigFactory}
 import zio.{Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
 
 import java.io.File
@@ -22,6 +24,12 @@ object MavenSearchCliApp extends ZIOAppDefault {
     help = "A hotList is a list of configured references you want to group, more than one can be comma seperated"
   )
 
+  private val configPathCommand = Opts.option[String](
+    long = "config",
+    short = "c",
+    help = "Path of the config file"
+  )
+
   private val orgCommandLine = Opts.option[String](
     long = "org",
     short = "o",
@@ -30,25 +38,19 @@ object MavenSearchCliApp extends ZIOAppDefault {
   )
 
   override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = {
-
     for {
       args <- ZIOAppArgs.getArgs
-      configResource <- ZIO.fromEither(
-        Option(getClass.getClassLoader.getResource("config.json"))
-          .toRight(new RuntimeException("config.json cannot be found"))
-      )
       hotList <- ZIO.fromEither(Command("", "")(hotListCommandLine).parse(args))
-      configFile = new File(configResource.getFile)
-      _ = println(s"configFile $configFile ")
-      searchConfig <- SearchConfig.readFromFile(configFile)
-      a <- new MavenSearchCliApp()
+      searchConfig <- SearchConfig.readFromResource("config.json")
+      searchResults <- new MavenSearchCliApp()
         .run(searchConfig, hotList)
         .provide(MavenSearchClient.layer, NowProvider.layer, MavenSingleSearch.layer)
-      _ = a
+      _ = searchResults
         .sortBy(MavenOrgSearchResult.comparable)
         .foreach(result => println(result.render))
-    } yield println(a)
+    } yield println(searchResults)
   }
+
 }
 
 class MavenSearchCliApp {

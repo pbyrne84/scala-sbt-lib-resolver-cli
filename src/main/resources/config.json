@@ -102,6 +102,16 @@
       ]
     },
     {
+      "name": "nativeimage",
+      "org": "org.scalameta",
+      "modules": [
+        {
+          "name": "sbt-native-image",
+          "isSbtPlugin" : true
+        }
+      ]
+    },
+    {
       "name": "assembly",
       "org": "com.eed3si9n",
       "modules": [

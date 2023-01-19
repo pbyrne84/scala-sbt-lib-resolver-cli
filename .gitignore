@@ -3,3 +3,5 @@
 target
 .idea
 .bsp
+scala-sbt-lib-resolver-cli.*
+*.dll

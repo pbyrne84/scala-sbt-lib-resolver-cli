@@ -1,11 +1,14 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven
 
+import com.pbyrne84.github.scala.github.mavensearchcli.MavenSearchCliApp.getClass
 import com.pbyrne84.github.scala.github.mavensearchcli.config.ModuleConfig
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import zio.Scope
 import zio.test._
+
+import java.io.File
 
 object MavenOrgSearchResultSpec extends BaseSpec {
   private implicit class StringOps(string: String) {
@@ -123,6 +126,8 @@ object MavenOrgSearchResultSpec extends BaseSpec {
         test(
           "should go non test, tests, plugins and then not found. Items under each grouping should be ordered by org and then module"
         ) {
+
+          new File(getClass.getClassLoader.getResource("config.json").getFile.stripPrefix("\\").stripPrefix("/"))
 
           val org1NotFoundModule2 = createNotFound(organisation = "org1", moduleName = "module2")
           val org1FoundModule3 =

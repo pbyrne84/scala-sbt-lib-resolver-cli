@@ -1,57 +1,25 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.config
+import io.circe
 import io.circe.Decoder
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
-import zio.{IO, ZIO}
 
-import java.io.{File, InputStream}
-import java.net.URL
 import scala.annotation.tailrec
-import scala.io.Source
-import scala.util.Using
 
 object SearchConfig {
 
+  // is used by extras.semiauto
   private implicit val customConfig: Configuration = Configuration.default.withDefaults
 
   implicit val commandLineConfigDecoder: Decoder[SearchConfig] = deriveConfiguredDecoder[SearchConfig]
 
   implicit val orgConfigDecoder: Decoder[OrgConfig] = deriveConfiguredDecoder[OrgConfig]
 
-  def readFromFile(file: File): IO[Throwable, SearchConfig] = {
-
-    ZIO.fromEither {
-      val errorOrFileContents = Using(Source.fromFile(file)) { fileSource =>
-        fileSource.getLines().mkString("\n")
-      }.toEither
-
-      for {
-        fileContents <- errorOrFileContents
-        searchConfig <- parseFromFileContents(fileContents)
-      } yield searchConfig
-    }
-  }
-
-  private def parseFromFileContents(fileContents: String): Either[RuntimeException, SearchConfig] = {
+  def decodeFromString(input: String): Either[RuntimeException, SearchConfig] =
     io.circe.parser
-      .decode[SearchConfig](fileContents)
+      .decode[SearchConfig](input)
       .left
-      .map(error => new RuntimeException(s"${error.getMessage} $fileContents", error))
-  }
-
-  def readFromResource(name: String): ZIO[Any, Throwable, SearchConfig] = {
-
-    val stream: InputStream = this.getClass.getClassLoader.getResourceAsStream(name)
-
-    ZIO.fromEither(
-      for {
-        contents <- Using(scala.io.Source.fromInputStream(stream)) { reader =>
-          reader.getLines().mkString("\n")
-        }.toEither
-        searchConfig <- parseFromFileContents(contents)
-      } yield searchConfig
-    )
-  }
+      .map(error => new RuntimeException(s"${error.getMessage} cannot parse $input", error))
 
 }
 

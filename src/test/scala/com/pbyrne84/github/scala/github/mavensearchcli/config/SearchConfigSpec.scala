@@ -10,82 +10,6 @@ object SearchConfigSpec extends BaseSpec {
   // noinspection RedundantDefaultArgument
   override def spec: Spec[TestEnvironment with Scope, Any] =
     suite("SearchConfig")(
-      test("should parse from the resources folder") {
-        SearchConfig.readFromResource("config.json").map(result => assertTrue(result.isValid == true))
-      },
-      test("should convert when there are no hotList entries") {
-        val json =
-          s"""
-            |{
-            |  "defaultProductionVersionRegex" : "([\\\\d\\\\.]+)",
-            |  "hotList" : [],
-            |  "maximumPagesToPaginate" : 3,
-            |  "retryCount" : 5,
-            |  "libs": [
-            |    {
-            |      "name": "circe",
-            |      "org": "io.circe",
-            |      "modules": [
-            |        ${moduleJson("circe-core", maybeVersionPattern = Some("xxx"), maybeIsScala = Some(true)).spaces2},
-            |        ${moduleJson("circe-parser").spaces2},
-            |        ${moduleJson("circe-generic", maybeIsTestScope = None, maybeVersionPattern = None).spaces2}
-            |      ]
-            |    },
-            |    {
-            |      "name": "logback",
-            |      "org": "ch.qos.logback",
-            |      "modules": [
-            |        ${moduleJson("logback-classic", maybeIsScala = Some(false)).spaces2}
-            |      ]
-            |    },
-            |    {
-            |      "name": "zio",
-            |      "org": "dev.zio",
-            |      "modules": [
-            |         ${moduleJson("zio-logging-slf4j").spaces2},
-            |         ${moduleJson("zio-test", maybeIsTestScope = Some(true), maybeVersionPattern = Some("?")).spaces2},
-            |         ${moduleJson("zio-test-sbt", maybeIsTestScope = Some(true)).spaces2}
-            |      ]
-            |    }
-            |  ]
-            |}
-            |""".stripMargin
-
-        val expected = SearchConfig(
-          defaultProductionVersionRegex = "([\\d\\.]+)",
-          maximumPagesToPaginate = 3,
-          hotList = List.empty,
-          libs = List(
-            OrgConfig(
-              "circe",
-              "io.circe",
-              List(
-                ModuleConfig(name = "circe-core", isTestScope = false, versionPattern = Some("xxx"), isScala = true),
-                ModuleConfig("circe-parser", isTestScope = false, isScala = true),
-                ModuleConfig("circe-generic", isTestScope = false)
-              )
-            ),
-            OrgConfig(
-              "logback",
-              "ch.qos.logback",
-              List(ModuleConfig("logback-classic", isTestScope = false, isScala = false))
-            ),
-            OrgConfig(
-              "zio",
-              "dev.zio",
-              List(
-                ModuleConfig("zio-logging-slf4j", isTestScope = false),
-                ModuleConfig("zio-test", isTestScope = true, versionPattern = Some("?")),
-                ModuleConfig("zio-test-sbt", isTestScope = true)
-              )
-            )
-          ),
-          retryCount = 5
-        )
-
-        val actual = attemptDecode(json)
-        assertTrue(actual == Right(expected))
-      },
       test("should convert when there are hotList entries and validate entries exist in libs") {
         val json = {
           s"""
@@ -151,7 +75,7 @@ object SearchConfigSpec extends BaseSpec {
             zioOrgConfig
           )
         )
-        val actual = attemptDecode(json)
+        val actual = SearchConfig.decodeFromString(json)
         assertTrue(
           actual == Right(expected),
           actual.map(_.isValid) == Right(true),
@@ -213,7 +137,7 @@ object SearchConfigSpec extends BaseSpec {
             circeOrgConfig
           )
         )
-        val actual = attemptDecode(json)
+        val actual = SearchConfig.decodeFromString(json)
         assertTrue(
           actual == Right(expected),
           actual.map(_.isValid) == Right(true),
@@ -242,20 +166,4 @@ object SearchConfigSpec extends BaseSpec {
     )
   }
 
-  private def attemptDecode(json: String): Either[RuntimeException, SearchConfig] = {
-    for {
-      parsedJson <-
-        // make test error on mangled hand written json clearer
-        io.circe.parser
-          .parse(json)
-          .left
-          .map(error => new RuntimeException(s"${error.message} cannot parse $json", error))
-      searchConfig <- SearchConfig.commandLineConfigDecoder
-        .decodeJson(parsedJson)
-        .left
-        .map(error => new RuntimeException(s"cannot convert ${parsedJson.spaces2} to SearchConfig", error))
-
-    } yield searchConfig
-
-  }
 }

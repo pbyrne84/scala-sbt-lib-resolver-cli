@@ -37,4 +37,8 @@ jobs:
             -H:TraceClassInitialization=true \
             -jar target/scala-2.13/scala-sbt-lib-resolver-cli.jar
           ls -l
-          ./scala-sbt-lib-resolver-cli --hotlist test-single
+          ./scala-sbt-lib-resolver-cli --hotlist test-single --config internal
+          cd ..
+          ls -l
+          scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli --hotlist test-single --config src/main/resources/config.json
+          

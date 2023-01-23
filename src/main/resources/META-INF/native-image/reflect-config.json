@@ -345,6 +345,10 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.SearchConfigReaderSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.SearchConfigSpec$",
   "fields":[{"name":"MODULE$"}]
 },

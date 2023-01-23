@@ -1,0 +1,38 @@
+protectionDomain ProtectionDomain  (file:/root/project_mount/target/scala-2.13/test-classes/ <no signer certificates>)
+ jdk.internal.loader.ClassLoaders$AppClassLoader@55f96302
+ <no principals>
+ java.security.Permissions@6cbf4285 (
+ ("java.util.PropertyPermission" "java.specification.version" "read")
+ ("java.util.PropertyPermission" "java.vm.vendor" "read")
+ ("java.util.PropertyPermission" "path.separator" "read")
+ ("java.util.PropertyPermission" "os.version" "read")
+ ("java.util.PropertyPermission" "java.vendor.url" "read")
+ ("java.util.PropertyPermission" "java.vm.name" "read")
+ ("java.util.PropertyPermission" "java.vm.specification.version" "read")
+ ("java.util.PropertyPermission" "os.name" "read")
+ ("java.util.PropertyPermission" "java.version" "read")
+ ("java.util.PropertyPermission" "os.arch" "read")
+ ("java.util.PropertyPermission" "java.specification.vendor" "read")
+ ("java.util.PropertyPermission" "java.vm.specification.name" "read")
+ ("java.util.PropertyPermission" "file.separator" "read")
+ ("java.util.PropertyPermission" "line.separator" "read")
+ ("java.util.PropertyPermission" "java.vm.specification.vendor" "read")
+ ("java.util.PropertyPermission" "java.specification.name" "read")
+ ("java.util.PropertyPermission" "java.vendor" "read")
+ ("java.util.PropertyPermission" "java.vm.version" "read")
+ ("java.util.PropertyPermission" "java.class.version" "read")
+ ("java.lang.RuntimePermission" "accessClassInPackage.com.sun.beans.*")
+ ("java.lang.RuntimePermission" "accessClassInPackage.com.apple.*")
+ ("java.lang.RuntimePermission" "accessClassInPackage.com.sun.java.swing.plaf.*")
+ ("java.lang.RuntimePermission" "exitVM")
+ ("java.lang.RuntimePermission" "accessClassInPackage.com.sun.beans")
+ ("java.io.FilePermission" "/root/project_mount/target/scala-2.13/test-classes/-#plus" "read")
+ ("java.io.FilePermission" "/root/project_mount/target/scala-2.13/test-classes/-" "read")
+ ("java.net.SocketPermission" "localhost:0" "listen,resolve")
+)
+
+
+codeSource (file:/root/project_mount/target/scala-2.13/test-classes/ <no signer certificates>)
+location file:/root/project_mount/target/scala-2.13/test-classes/
+location.toURI file:/root/project_mount/target/scala-2.13/test-classes/
+location.toURI.getPath /root/project_mount/target/scala-2.13/test-classes/

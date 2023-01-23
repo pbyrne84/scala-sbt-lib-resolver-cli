@@ -1,0 +1,16 @@
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "2.1.0")
+List(FoundMavenOrgSearchResult(RawSearchResult(com.eed3si9n,sbt-assembly,2.1.0),ModuleConfig(sbt-assembly,false,None,true,true)))
+total 4
+drwxr-xr-x 7 runner docker 4096 Jan 25 14:18 scala-sbt-lib-resolver-cli
+protectionDomain ProtectionDomain  (file:/home/runner/work/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli <no signer certificates>)
+ null
+ <no principals>
+ java.security.Permissions@5381c1d3 (
+ ("java.security.AllPermission" "<all permissions>" "<all actions>")
+)
+
+
+codeSource (file:/home/runner/work/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli <no signer certificates>)
+location file:/home/runner/work/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli
+location.toURI file:/home/runner/work/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli
+location.toURI.getPath /home/runner/work/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli

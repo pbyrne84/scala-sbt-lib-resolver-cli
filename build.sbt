@@ -15,8 +15,6 @@ ThisBuild / assemblyMergeStrategy := {
     oldStrategy(x)
 }
 
-addCompilerPlugin("io.tryp" % "splain" % "1.0.1" cross CrossVersion.patch)
-
 libraryDependencies ++= List(
   "com.monovore" %% "decline" % "2.4.1",
   "io.circe" %% "circe-core" % circeVersion,
@@ -54,3 +52,15 @@ lazy val nativeImageProject = (project in file("."))
     Compile / mainClass := Some("com.pbyrne84.github.scala.github.mavensearchcli.MavenSearchCliApp"),
     assembly / assemblyJarName := jarName
   )
+
+scalacOptions ++= Seq( // use ++= to add to existing options
+  "-encoding",
+  "utf8", // if an option takes an arg, supply it on the same line
+  "-feature", // then put the next option on a new line for easy editing
+  "-language:implicitConversions",
+  "-language:existentials",
+  "-unchecked",
+  "-Xlint" // exploit "trailing comma" syntax so you can add an option without editing this line
+)
+
+//coverageEnabled := false

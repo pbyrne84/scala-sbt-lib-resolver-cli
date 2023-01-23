@@ -1,0 +1,6 @@
+## Copied from https://github.com/pbyrne84/scala_native_lambda_test/blob/bd3297d8d0ccb90d02cfc48d94250e9e3f110bd0/scala_native_lambda_test_builder/Dockerfile#L10
+
+FROM ubuntu:20.04
+RUN mkdir -p /scripts
+COPY docker_install.sh /scripts
+RUN /scripts/docker_install.sh

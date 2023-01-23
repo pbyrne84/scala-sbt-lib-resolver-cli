@@ -1,6 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{ModuleConfig, OrgConfig, ScalaVersion213, SearchConfig}
+import com.pbyrne84.github.scala.github.mavensearchcli.config._
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.MavenOrgSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   MavenSearchClient,
@@ -8,11 +8,7 @@ import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   NowProvider,
   SearchParams
 }
-import com.typesafe.config.impl.ConfigImpl
-import com.typesafe.config.{Config, ConfigFactory}
 import zio.{Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
-
-import java.io.File
 
 object MavenSearchCliApp extends ZIOAppDefault {
 
@@ -30,18 +26,19 @@ object MavenSearchCliApp extends ZIOAppDefault {
     help = "Path of the config file"
   )
 
-  private val orgCommandLine = Opts.option[String](
-    long = "org",
-    short = "o",
-    help =
-      "An org is a reference to libraries under an org, the name is separate so you can have many configs for an org"
-  )
-
   override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = {
+    import cats.implicits._
+    val a: Opts[(String, String)] = (hotListCommandLine, configPathCommand).mapN { (hotList, config) =>
+      (hotList, config)
+    }
+
     for {
-      args <- ZIOAppArgs.getArgs
-      hotList <- ZIO.fromEither(Command("", "")(hotListCommandLine).parse(args))
-      searchConfig <- SearchConfig.readFromResource("config.json")
+      rawArgs <- ZIOAppArgs.getArgs
+      // better monadic for does not work with native
+      parsedArgs <- ZIO.fromEither(Command("", "")(a).parse(rawArgs))
+      (hotList, configOption) = parsedArgs
+      searchConfiguration <- new SearchConfigReader().fromCommandLineValue(configOption)
+      searchConfig <- ZIO.fromEither(SearchConfig.decodeFromString(searchConfiguration))
       searchResults <- new MavenSearchCliApp()
         .run(searchConfig, hotList)
         .provide(MavenSearchClient.layer, NowProvider.layer, MavenSingleSearch.layer)
@@ -62,7 +59,7 @@ class MavenSearchCliApp {
         _ = println(s"hotList $hotList")
         hotListConfig <- ZIO
           .fromOption(hotListMappings.get(hotList))
-          .mapError(error => s"Could not find hotList '$hotList'")
+          .mapError(_ => s"Could not find hotList '$hotList'")
         results <- ZIO
           .foreach(hotListConfig) { orgConfig =>
             searchUsingConfig(searchConfig, orgConfig)

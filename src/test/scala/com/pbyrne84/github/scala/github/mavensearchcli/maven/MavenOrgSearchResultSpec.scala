@@ -1,6 +1,5 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven
 
-import com.pbyrne84.github.scala.github.mavensearchcli.MavenSearchCliApp.getClass
 import com.pbyrne84.github.scala.github.mavensearchcli.config.ModuleConfig
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec

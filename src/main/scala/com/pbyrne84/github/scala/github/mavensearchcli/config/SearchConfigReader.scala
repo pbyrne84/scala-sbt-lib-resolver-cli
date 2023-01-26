@@ -2,14 +2,13 @@ package com.pbyrne84.github.scala.github.mavensearchcli.config
 
 import com.pbyrne84.github.scala.github.mavensearchcli.config.SearchConfigReader.{
   defaultCommandLineOption,
-  defaultFileName,
-  getClass
+  defaultFileName
 }
-import zio.{IO, ZIO}
+import zio.ZIO
 
 import java.io.File
 import scala.io.Source
-import scala.util.{Try, Using}
+import scala.util.Using
 
 case class ConfigReaderException(message: String, cause: Throwable) extends RuntimeException(message, cause)
 
@@ -26,11 +25,11 @@ class SearchConfigReader {
       runSource: Class[_] = SearchConfigReader.getClass
   ): ZIO[Any, ConfigReaderException, String] = {
     if (value == defaultCommandLineOption) {
-      readDefault.mapError(error =>
+      ZIO.logDebug("attempting to read internal default config") *> readDefault.mapError(error =>
         ConfigReaderException(s"The default internal resource $defaultFileName could not be read", error)
       )
     } else {
-      readCustom(value, runSource).mapError(error =>
+      ZIO.logDebug(s"attempting to read custom config '$value'") *> readCustom(value, runSource).mapError(error =>
         ConfigReaderException(s"The custom location $value could not be read", error)
       )
     }
@@ -52,42 +51,65 @@ class SearchConfigReader {
     }
   }
 
-  private def readCustom(value: String, runSource: Class[_]): IO[Throwable, String] = {
-    ZIO.fromEither {
-      val errorOrExecutableBasePath = Try {
-        val protectionDomain = runSource.getProtectionDomain
-        println(s"protectionDomain $protectionDomain")
-
-        val codeSource = protectionDomain.getCodeSource
-        println(s"codeSource $codeSource")
-
-        val location = codeSource.getLocation
-        // println(s"location $location")
-        println(s"location.toURI ${location.toURI}")
-        println(s"location.toURI.getPath ${location.toURI.getPath}")
-
-        val currentLocation = new File(location.toURI.getPath)
-        // so when we run the test the folder is returned but when it is a native image it is the executable
-        // meaning we then need the parent. No way to really test that
-        if (currentLocation.isFile) {
-          currentLocation.getParent
-        } else {
-          currentLocation.getAbsolutePath
-        }
-      }.toEither.map {
-        // windows does not really usually care about \ being /
-        _.replace("\\", "/").stripSuffix("/")
-      }
-      for {
-        executableBasePath <- errorOrExecutableBasePath
-        filePath = s"$executableBasePath/$value"
-        fileContents <- Using(Source.fromFile(filePath)) { reader =>
-          reader.mkString
-        }.toEither.left.map(error => new RuntimeException(s"Could not read config from $filePath", error))
-      } yield {
-        fileContents
-      }
+  /** This will attempt to calculate the config path relative to the executable, not where the command line is
+    * currently. This enables the executable to be put on the path and run from anywhere.
+    * @param value
+    * @param runSource
+    * @return
+    */
+  private def readCustom(value: String, runSource: Class[_]): ZIO[Any, Throwable, String] = {
+    for {
+      executableBasePath <- calculateExecutableBasePath(value, runSource)
+      filePath = s"$executableBasePath/$value"
+      fileContents <- ZIO.fromEither(Using(Source.fromFile(filePath)) { reader =>
+        reader.mkString
+      }.toEither.left.map(error => new RuntimeException(s"Could not read config from $filePath", error)))
+    } yield {
+      fileContents
     }
+
+  }
+
+  private def calculateExecutableBasePath(value: String, runSource: Class[_]): ZIO[Any, Throwable, String] = {
+    // Once in executable form we cannot debug easily hence the verbosity
+    for {
+      _ <- ZIO.logDebug(s"calculating custom config path from $value")
+      protectionDomain <- ZIO.attempt(runSource.getProtectionDomain)
+      _ <- ZIO.logDebug(s"current protectionDomain $protectionDomain")
+      codeSource <- ZIO.attempt(protectionDomain.getCodeSource)
+      _ <- ZIO.logDebug(s"current codeSource $codeSource")
+      location <- ZIO.attempt(codeSource.getLocation)
+      _ <- ZIO.logDebug(s"current code location $location")
+      _ <- ZIO.logDebug(s"current code location.toUri ${location.toURI}")
+      _ <- ZIO.logDebug(s"current code location.toUri.getPath ${location.toURI.getPath}")
+      runningFileLocation <- ZIO.attempt(new File(location.toURI.getPath))
+      // so when we run the test the folder is returned but when it is a native image it is the executable
+      // meaning we then need the parent. No way to really test that
+      executableBasePath <- calculateExecutableParentFolder(runningFileLocation)
+    } yield {
+      executableBasePath
+    }
+  }
+
+  /** When running from sbt the absolute path will be the root folder of the project, where as if when this is converted
+    * to an executable the absolute path will be the executable hence we need to to the parent.
+    * @param runningFileLocation
+    * @return
+    */
+  private def calculateExecutableParentFolder(runningFileLocation: File) = {
+    for {
+      _ <- ZIO.logDebug(s"calculating save executable location from $runningFileLocation")
+      safeLocation = (if (runningFileLocation.isFile) {
+                        runningFileLocation.getParent
+                      } else {
+                        runningFileLocation.getAbsolutePath
+                      })
+        // windows does not really usually care about \ being /
+        .replace("\\", "/")
+        .stripSuffix("/")
+      _ <- ZIO.logDebug(s"custom config location base path is $safeLocation")
+    } yield safeLocation
+
   }
 }
 

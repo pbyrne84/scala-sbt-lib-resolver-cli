@@ -1,6 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.shared
 
-import zio.{Task, ZIO, ZLayer}
+import zio.{ZIO, ZLayer}
 
 import java.net.ServerSocket
 import scala.util.Using

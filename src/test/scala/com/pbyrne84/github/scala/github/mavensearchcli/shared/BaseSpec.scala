@@ -4,8 +4,8 @@ import com.pbyrne84.github.scala.github.mavensearchcli.config.CommandLineConfig
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.wiremock.MavenWireMock
 import io.circe.ParsingFailure
-import zio.{ZIO, ZLayer}
 import zio.test.ZIOSpec
+import zio.{ZIO, ZLayer}
 
 object BaseSpec {
 

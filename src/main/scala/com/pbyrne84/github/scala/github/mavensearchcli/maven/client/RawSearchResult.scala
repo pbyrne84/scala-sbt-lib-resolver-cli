@@ -2,8 +2,6 @@ package com.pbyrne84.github.scala.github.mavensearchcli.maven.client
 
 import io.circe.{Decoder, Encoder}
 
-import java.util
-
 object RawSearchResult {
   implicit val rawModuleEncoder: Encoder.AsObject[RawSearchResult] =
     Encoder.forProduct3("g", "a", "v")(result =>

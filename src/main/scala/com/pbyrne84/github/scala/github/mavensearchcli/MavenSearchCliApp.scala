@@ -8,11 +8,14 @@ import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   NowProvider,
   SearchParams
 }
-import zio.{Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
+import zio.logging.backend.SLF4J
+import zio.{LogLevel, Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
 
 object MavenSearchCliApp extends ZIOAppDefault {
 
   import com.monovore.decline._
+
+  private val loggingLayer = zio.Runtime.removeDefaultLoggers >>> SLF4J.slf4j
 
   private val hotListCommandLine = Opts.option[String](
     long = "hotlist",
@@ -26,28 +29,52 @@ object MavenSearchCliApp extends ZIOAppDefault {
     help = "Path of the config file"
   )
 
+  private val enableDebugCommand = Opts
+    .flag(
+      long = "debug",
+      short = "d",
+      help = "view debug lugs"
+    )
+    .map(_ => true)
+    .withDefault(false)
+
+  private case class CommandLineArgs(hotList: String, configOption: String, enableDebug: Boolean)
+
   override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = {
     import cats.implicits._
-    val a: Opts[(String, String)] = (hotListCommandLine, configPathCommand).mapN { (hotList, config) =>
-      (hotList, config)
+    val commandLineArgs: Opts[CommandLineArgs] = (hotListCommandLine, configPathCommand, enableDebugCommand).mapN {
+      (hotList, config, enableDebug) =>
+        CommandLineArgs(hotList, config, enableDebug)
     }
 
-    for {
+    (for {
       rawArgs <- ZIOAppArgs.getArgs
-      // better monadic for does not work with native
-      parsedArgs <- ZIO.fromEither(Command("", "")(a).parse(rawArgs))
-      (hotList, configOption) = parsedArgs
-      searchConfiguration <- new SearchConfigReader().fromCommandLineValue(configOption)
-      searchConfig <- ZIO.fromEither(SearchConfig.decodeFromString(searchConfiguration))
-      searchResults <- new MavenSearchCliApp()
-        .run(searchConfig, hotList)
-        .provide(MavenSearchClient.layer, NowProvider.layer, MavenSingleSearch.layer)
-      _ = searchResults
-        .sortBy(MavenOrgSearchResult.comparable)
-        .foreach(result => println(result.render))
-    } yield println(searchResults)
+      parsedArgs <- ZIO.fromEither(Command("", "")(commandLineArgs).parse(rawArgs))
+      loglevel = calculateLogLevel(parsedArgs.enableDebug)
+      searchResults <- executeUsingArgs(loglevel, parsedArgs)
+    } yield println(searchResults)).provideSome[ZIOAppArgs](loggingLayer)
   }
 
+  private def calculateLogLevel(enableDebug: Boolean): LogLevel = {
+    ZIO.logLevel {
+      if (enableDebug) LogLevel.Debug else LogLevel.Info
+    }
+  }
+
+  private def executeUsingArgs(logLevel: LogLevel, commandLineArgs: CommandLineArgs) = {
+    ZIO.logLevel(logLevel) {
+      for {
+        searchConfiguration <- new SearchConfigReader().fromCommandLineValue(commandLineArgs.configOption)
+        searchConfig <- ZIO.fromEither(SearchConfig.decodeFromString(searchConfiguration))
+        searchResults <- new MavenSearchCliApp()
+          .run(searchConfig, commandLineArgs.hotList)
+          .provide(MavenSearchClient.layer, NowProvider.layer, MavenSingleSearch.layer)
+        _ = searchResults
+          .sortBy(MavenOrgSearchResult.comparable)
+          .foreach(result => println(result.render))
+      } yield println(searchResults)
+    }
+  }
 }
 
 class MavenSearchCliApp {
@@ -59,7 +86,7 @@ class MavenSearchCliApp {
         _ = println(s"hotList $hotList")
         hotListConfig <- ZIO
           .fromOption(hotListMappings.get(hotList))
-          .mapError(_ => s"Could not find hotList '$hotList'")
+          .mapError(_ => s"Could not find hotList '$hotList' in ${hotListMappings.map(_._1).mkString(", ")}")
         results <- ZIO
           .foreach(hotListConfig) { orgConfig =>
             searchUsingConfig(searchConfig, orgConfig)

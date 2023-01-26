@@ -6,7 +6,7 @@ import com.pbyrne84.github.scala.github.mavensearchcli.maven.MavenOrgSearchResul
 import sttp.client3.Response
 import sttp.client3.httpclient.zio.HttpClientZioBackend
 import zio.config.ReadError
-import zio.{IO, ZIO, ZLayer}
+import zio.{Cause, IO, ZIO, ZLayer}
 
 sealed abstract class SingleSearchException(message: String, cause: Throwable) extends RuntimeException(message, cause)
 
@@ -56,10 +56,12 @@ class MavenSingleSearch(mavenHostUrl: String, pageSize: Int) {
       searchTerms <- eventualSearchTerms
       searchUri =
         uri"${mavenHostUrl.stripSuffix("/")}/select?core=gav&q=$searchTerms&rows=$pageSize&start=$startIndex"
+      _ <- ZIO.logDebug(s"calling maven with $searchUri from $searchParams")
       request = basicRequest
         .response(asStringAlways)
         .get(searchUri)
       response <- backend.send(request).mapError(error => NetworkSingleSearchException(searchUri.toString, error))
+      _ <- ZIO.logDebug(s"received $response from $searchUri ")
       _ <- validateResponseStatus(response).mapError(error => NetworkSingleSearchException(searchUri.toString, error))
       searchResults <- ZIO
         .fromEither(MavenOrgSearchResults.fromJsonText(response.body))
@@ -68,11 +70,15 @@ class MavenSingleSearch(mavenHostUrl: String, pageSize: Int) {
   }
 
   private def validateResponseStatus(response: Response[String]): IO[UnExpectedMavenResponseError, Boolean] = {
-    ZIO.fromEither(if (!response.code.isSuccess) {
-      Left(UnExpectedMavenResponseError(s"${response.request} returned ${response.code} with body: ${response.body}"))
+    if (!response.code.isSuccess) {
+      val error = UnExpectedMavenResponseError(
+        s"${response.request} returned ${response.code} with body: ${response.body}"
+      )
+
+      ZIO.logErrorCause(Cause.fail(error)) *> ZIO.fail(error)
     } else {
-      Right(true)
-    })
+      ZIO.logDebug("request was successful") *> ZIO.succeed(true)
+    }
   }
 
 }

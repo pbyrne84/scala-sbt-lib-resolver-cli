@@ -6,9 +6,9 @@ import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.wiremock.MavenWireMock
 import org.mockito.Mockito
-import zio.{Scope, ZIO, ZLayer}
 import zio.test.TestAspect.sequential
 import zio.test._
+import zio.{Scope, ZIO, ZLayer}
 
 import java.time.Instant
 

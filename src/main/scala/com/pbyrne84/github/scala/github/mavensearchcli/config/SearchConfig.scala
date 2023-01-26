@@ -1,14 +1,14 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.config
-import io.circe
 import io.circe.Decoder
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
 
-import scala.annotation.tailrec
+import scala.annotation.{tailrec, unused}
 
 object SearchConfig {
 
-  // is used by extras.semiauto
+  // is used by extras.semiauto but compiler says otherwise then fails when removed
+  @unused
   private implicit val customConfig: Configuration = Configuration.default.withDefaults
 
   implicit val commandLineConfigDecoder: Decoder[SearchConfig] = deriveConfiguredDecoder[SearchConfig]
@@ -74,7 +74,8 @@ case class OrgConfig(name: String, org: String, modules: List[ModuleConfig])
 object ModuleConfig {
   import io.circe.generic.extras.semiauto._
 
-  // used below, not scala3 compat as macros...
+  // used below but throws warning that it isn't, not scala3 compat as macros...
+  @unused
   private implicit val customConfig: Configuration = Configuration.default.withDefaults
 
   implicit val moduleConfigDecoder: Decoder[ModuleConfig] = deriveConfiguredDecoder[ModuleConfig]

@@ -27,6 +27,7 @@ case class SearchParams(
     retryCount: Int
 ) {
   val versionedModuleName: String = moduleConfig.versionedName(scalaVersion)
+
 }
 
 object MavenSearchClient extends ZIOServiced[MavenSearchClient] {
@@ -56,21 +57,23 @@ class MavenSearchClient(pageSize: Int) {
   ): ZIO[NowProvider with MavenSingleSearch, Throwable, MavenOrgSearchResult] = {
     val startIndex = 0
     for {
-      searchResults <- MavenSingleSearch.runQuery(
+      _ <- ZIO.logDebug(s"searching maven using $searchParams")
+      headSearchResult <- MavenSingleSearch.runQuery(
         searchParams,
         startIndex = startIndex,
         maybeWithinSeconds = searchParams.maybeWithinSeconds
       )
-      maybeFirstPageSearchResult = searchResults.pagedResults
+      versionPatternFilteredHeadSearchResult = headSearchResult.pagedResults
         .filter(_.version.matches(searchParams.versionPattern))
         .sorted
         .headOption
-      searchResult <- maybePaginatePastFirstPage(
-        searchResults,
-        maybeFirstPageSearchResult,
+      finalSearchResult <- maybePaginatePastFirstPage(
+        headSearchResult,
+        versionPatternFilteredHeadSearchResult,
         searchParams
       )
-    } yield searchResult
+      _ <- ZIO.logDebug(s"$searchParams resolved to $finalSearchResult")
+    } yield finalSearchResult
   }
 
   private def maybePaginatePastFirstPage(
@@ -81,6 +84,7 @@ class MavenSearchClient(pageSize: Int) {
     maybeFirstPageSearchResult match {
       case Some(value) =>
         ZIO.succeed(FoundMavenOrgSearchResult(value, searchParams.moduleConfig))
+
       case None =>
         val pagesAvailable = (searchResults.totalFound.toFloat / pageSize).ceil.toInt
         paginateUntilFound(

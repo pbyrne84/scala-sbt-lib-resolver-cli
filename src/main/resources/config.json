@@ -1,7 +1,7 @@
 {
   "defaultProductionVersionRegex": "([\\d\\.]+)",
   "maximumPagesToPaginate": 2,
-  "retryCount" : 6,
+  "retryCount": 6,
   "hotList": [
     {
       "name": "zio-app",
@@ -12,7 +12,8 @@
         "zio",
         "wiremock",
         "scoverage",
-        "scalafmt"
+        "scalafmt",
+        "sbt-rewarn"
       ]
     },
     {
@@ -54,7 +55,7 @@
       "modules": [
         {
           "name": "logstash-logback-encoder",
-          "isScala" : false
+          "isScala": false
         }
       ]
     },
@@ -87,7 +88,7 @@
       "modules": [
         {
           "name": "sbt-scoverage",
-          "isSbtPlugin" : true
+          "isSbtPlugin": true
         }
       ]
     },
@@ -97,7 +98,7 @@
       "modules": [
         {
           "name": "sbt-scalafmt",
-          "isSbtPlugin" : true
+          "isSbtPlugin": true
         }
       ]
     },
@@ -107,7 +108,7 @@
       "modules": [
         {
           "name": "sbt-native-image",
-          "isSbtPlugin" : true
+          "isSbtPlugin": true
         }
       ]
     },
@@ -117,7 +118,17 @@
       "modules": [
         {
           "name": "sbt-assembly",
-          "isSbtPlugin" : true
+          "isSbtPlugin": true
+        }
+      ]
+    },
+    {
+      "name": "sbt-rewarn",
+      "org": "com.timushev.sbt",
+      "modules": [
+        {
+          "name": "sbt-rewarn",
+          "isSbtPlugin": true
         }
       ]
     },
@@ -128,7 +139,7 @@
         {
           "name": "wiremock",
           "isTestScope": true,
-          "isScala" : false
+          "isScala": false
         }
       ]
     }

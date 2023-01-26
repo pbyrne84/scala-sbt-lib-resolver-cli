@@ -2,10 +2,10 @@ package com.pbyrne84.github.scala.github.mavensearchcli.config
 
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
-import zio.{IO, Scope, ZIO}
-import zio.test._
 import zio.test.Assertion._
 import zio.test.TestAspect.sequential
+import zio.test._
+import zio.{IO, Scope, ZIO}
 
 import scala.io.Source
 import scala.util.{Try, Using}

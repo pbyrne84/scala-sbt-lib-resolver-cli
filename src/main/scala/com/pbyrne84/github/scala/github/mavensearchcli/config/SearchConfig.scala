@@ -63,33 +63,10 @@ case class SearchConfig(
   }
 }
 
+case class OrgConfig(name: String, org: String, modules: List[ModuleConfig])
+
 object HotListItemConfig {
   implicit val hotListItemConfigDecoder: Decoder[HotListItemConfig] =
     io.circe.generic.semiauto.deriveDecoder[HotListItemConfig]
 }
 case class HotListItemConfig(name: String, refs: List[String])
-
-case class OrgConfig(name: String, org: String, modules: List[ModuleConfig])
-
-object ModuleConfig {
-  import io.circe.generic.extras.semiauto._
-
-  // used below but throws warning that it isn't, not scala3 compat as macros...
-  @unused
-  private implicit val customConfig: Configuration = Configuration.default.withDefaults
-
-  implicit val moduleConfigDecoder: Decoder[ModuleConfig] = deriveConfiguredDecoder[ModuleConfig]
-}
-case class ModuleConfig(
-    name: String,
-    isTestScope: Boolean = false,
-    versionPattern: Option[String] = None,
-    isScala: Boolean = true,
-    isSbtPlugin: Boolean = false
-) {
-  def versionedName(scalaVersion: ScalaVersion): String = if (isScala && !isSbtPlugin) {
-    s"${name}_${scalaVersion.suffix}"
-  } else {
-    name
-  }
-}

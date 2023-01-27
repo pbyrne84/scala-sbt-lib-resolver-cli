@@ -1,6 +1,14 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.ModuleConfig
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{
+  JavaNormalScope,
+  JavaTestScope,
+  ModuleConfig,
+  ModuleType,
+  SbtPlugin,
+  ScalaNormalScope,
+  ScalaTestScope
+}
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
@@ -47,6 +55,8 @@ object MavenOrgSearchResultSpec extends BaseSpec {
               moduleConfig = ModuleConfig("me")
             )
 
+          println(foundMavenOrgSearchResult.render)
+
           val expected =
             """
               |"dev.me" %% "me" % "1.2"
@@ -60,7 +70,7 @@ object MavenOrgSearchResultSpec extends BaseSpec {
           val foundMavenOrgSearchResult =
             FoundMavenOrgSearchResult(
               rawSearchResult = RawSearchResult("dev.me", "me_212", "1.2"),
-              moduleConfig = ModuleConfig("me", isTestScope = true)
+              moduleConfig = ModuleConfig("me", moduleType = ScalaTestScope)
             )
 
           val expected =
@@ -76,7 +86,7 @@ object MavenOrgSearchResultSpec extends BaseSpec {
           val foundMavenOrgSearchResult =
             FoundMavenOrgSearchResult(
               rawSearchResult = RawSearchResult("dev.me", "me_212", "1.2"),
-              moduleConfig = ModuleConfig("me", isSbtPlugin = true)
+              moduleConfig = ModuleConfig("me", moduleType = SbtPlugin)
             )
 
           val expected =
@@ -92,7 +102,7 @@ object MavenOrgSearchResultSpec extends BaseSpec {
           val foundMavenOrgSearchResult =
             FoundMavenOrgSearchResult(
               rawSearchResult = RawSearchResult("dev.me", "me_212", "1.2"),
-              moduleConfig = ModuleConfig("me", isScala = false)
+              moduleConfig = ModuleConfig("me", moduleType = JavaNormalScope)
             )
 
           val expected =
@@ -108,7 +118,7 @@ object MavenOrgSearchResultSpec extends BaseSpec {
           val foundMavenOrgSearchResult =
             FoundMavenOrgSearchResult(
               rawSearchResult = RawSearchResult("dev.me", "me_212", "1.2"),
-              moduleConfig = ModuleConfig("me", isScala = false, isTestScope = true)
+              moduleConfig = ModuleConfig("me", moduleType = JavaTestScope)
             )
 
           val expected =
@@ -130,32 +140,32 @@ object MavenOrgSearchResultSpec extends BaseSpec {
 
           val org1NotFoundModule2 = createNotFound(organisation = "org1", moduleName = "module2")
           val org1FoundModule3 =
-            createFound(organisation = "org1", moduleName = "module3", isTest = false, isSbtPlugin = false)
+            createFound(organisation = "org1", moduleName = "module3", ScalaNormalScope)
 
           val org1FoundTestModule0 =
-            createFound(organisation = "org1", moduleName = "module0", isTest = true, isSbtPlugin = false)
+            createFound(organisation = "org1", moduleName = "module0", ScalaTestScope)
 
           val org1FoundTestModule6 =
-            createFound(organisation = "org1", moduleName = "module6", isTest = true, isSbtPlugin = false)
+            createFound(organisation = "org1", moduleName = "module6", ScalaTestScope)
 
           val org1FoundPluginModule4 =
-            createFound(organisation = "org1", moduleName = "module4", isTest = false, isSbtPlugin = true)
+            createFound(organisation = "org1", moduleName = "module4", SbtPlugin)
 
           val org1FoundPluginModule5 =
-            createFound(organisation = "org1", moduleName = "module5", isTest = false, isSbtPlugin = true)
+            createFound(organisation = "org1", moduleName = "module5", SbtPlugin)
 
           val org2NotFoundModule1 = createNotFound(organisation = "org2", moduleName = "module1")
           val org2NotFoundModule2 = createNotFound(organisation = "org2", moduleName = "module2")
           val org2FoundModule3 =
-            createFound(organisation = "org2", moduleName = "module3", isTest = false, isSbtPlugin = false)
+            createFound(organisation = "org2", moduleName = "module3", ScalaNormalScope)
 
           val org2FoundTestModule0 =
-            createFound(organisation = "org2", moduleName = "module0", isTest = true, isSbtPlugin = false)
+            createFound(organisation = "org2", moduleName = "module0", ScalaTestScope)
 
           val org2FoundPluginModule4 =
-            createFound(organisation = "org2", moduleName = "module4", isTest = false, isSbtPlugin = true)
+            createFound(organisation = "org2", moduleName = "module4", SbtPlugin)
           val org2FoundModule5 =
-            createFound(organisation = "org2", moduleName = "module5", isTest = false, isSbtPlugin = false)
+            createFound(organisation = "org2", moduleName = "module5", ScalaNormalScope)
 
           val results = List(
             org2FoundModule5,
@@ -200,13 +210,13 @@ object MavenOrgSearchResultSpec extends BaseSpec {
       foundPotentialVersions = List.empty
     )
 
-  private def createFound(organisation: String, moduleName: String, isTest: Boolean, isSbtPlugin: Boolean) =
+  private def createFound(organisation: String, moduleName: String, moduleType: ModuleType) =
     FoundMavenOrgSearchResult(
       rawSearchResult = RawSearchResult(
         organisation = organisation,
         moduleWithScalaVersion = "xxxx",
         version = ""
       ),
-      moduleConfig = ModuleConfig(moduleName, isTestScope = isTest, isSbtPlugin = isSbtPlugin)
+      moduleConfig = ModuleConfig(moduleName, moduleType = moduleType)
     )
 }

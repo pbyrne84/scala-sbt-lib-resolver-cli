@@ -15,6 +15,9 @@ ThisBuild / assemblyMergeStrategy := {
     oldStrategy(x)
 }
 
+addCompilerPlugin("io.tryp" % "splain" % "1.0.1" cross CrossVersion.patch)
+addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
+
 libraryDependencies ++= List(
   "com.monovore" %% "decline" % "2.4.1",
   "io.circe" %% "circe-core" % circeVersion,

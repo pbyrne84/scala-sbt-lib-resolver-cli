@@ -1,6 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven.client
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{ModuleConfig, ScalaVersion213, ScalaVersion3}
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{ModuleConfig, SbtPlugin, ScalaVersion213, ScalaVersion3}
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.{FoundMavenOrgSearchResult, MissingMavenOrgSearchResult}
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
@@ -86,7 +86,7 @@ object MavenSearchClientSpec extends BaseSpec {
         for {
           _ <- reset
           orgSearchTerm = "orgY"
-          moduleConfig = ModuleConfig("some-results", isSbtPlugin = true)
+          moduleConfig = ModuleConfig("some-results", moduleType = SbtPlugin)
           scalaVersion = ScalaVersion213
           _ <- MavenWireMock.stubSearchOrg(
             generateOrgOnlyQuery(orgSearchTerm, moduleConfig.name),

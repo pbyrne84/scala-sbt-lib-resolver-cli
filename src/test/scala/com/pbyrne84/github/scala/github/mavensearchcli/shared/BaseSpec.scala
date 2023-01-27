@@ -3,7 +3,6 @@ package com.pbyrne84.github.scala.github.mavensearchcli.shared
 import com.pbyrne84.github.scala.github.mavensearchcli.config.CommandLineConfig
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.wiremock.MavenWireMock
-import io.circe.ParsingFailure
 import zio.test.ZIOSpec
 import zio.{ZIO, ZLayer}
 
@@ -26,8 +25,10 @@ abstract class BaseSpec extends ZIOSpec[SharedDeps] {
     MavenWireMock.reset
   }
 
-  def formattedJson(json: String): Either[ParsingFailure, String] = {
-    io.circe.parser.parse(json).map(_.spaces2)
-  }
+  // I have a common but bad habit of shoving everything in the base spec of tests.
+  // The problem with this is when you want to auto complete stuff it is very hard to resolve
+  // as there can be 200 methods starting with get or something. Dividing things by some sort of instance
+  // helps alleviate this.
+  protected val jsonOps = new JsonOps
 
 }

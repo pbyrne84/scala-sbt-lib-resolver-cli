@@ -1,6 +1,14 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.ModuleConfig
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{
+  JavaNormalScope,
+  JavaTestScope,
+  ModuleConfig,
+  SbtCompilerPlugin,
+  SbtPlugin,
+  ScalaNormalScope,
+  ScalaTestScope
+}
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 
 object MavenOrgSearchResult {
@@ -8,17 +16,17 @@ object MavenOrgSearchResult {
   def comparable(mavenOrgSearchResult: MavenOrgSearchResult): String = {
     mavenOrgSearchResult match {
       case found: FoundMavenOrgSearchResult =>
-        def boolToInt(boolean: Boolean) = if (boolean) {
-          1
-        } else {
-          0
+        // only really care about plugin order on success as they need a different implementation action
+        val typeMarker = found.moduleConfig.moduleType match {
+          case ScalaNormalScope => 1
+          case ScalaTestScope => 2
+          case JavaNormalScope => 3
+          case JavaTestScope => 4
+          case SbtPlugin => 5
+          case SbtCompilerPlugin => 6
         }
 
-        // only really care about plugin order on success as they need a different implementation action
-        val pluginMarker = boolToInt(found.isSbtPlugin)
-        val testMarker = boolToInt(found.isTestScope)
-
-        s"0_${pluginMarker}_${testMarker}_${found.organisation}_${found.moduleConfig.name}"
+        s"0_${typeMarker}_${found.organisation}_${found.moduleConfig.name}"
 
       case missing: MissingMavenOrgSearchResult =>
         s"1_${missing.organisation}_${missing.moduleName}"
@@ -37,36 +45,8 @@ case class FoundMavenOrgSearchResult(rawSearchResult: RawSearchResult, moduleCon
   val moduleWithScalaVersion: String = rawSearchResult.moduleWithScalaVersion
   val version: String = rawSearchResult.version
   val organisation: String = rawSearchResult.organisation
-  val isSbtPlugin: Boolean = moduleConfig.isSbtPlugin
-  val isTestScope: Boolean = moduleConfig.isTestScope
 
-  override def render: String = {
-    if (moduleConfig.isScala) {
-      if (moduleConfig.isTestScope) {
-        s"""
-           |"$organisation" %% "${moduleConfig.name}" % "$version" % Test
-           |""".stripMargin
-      } else if (moduleConfig.isSbtPlugin) {
-        s"""
-          |addSbtPlugin("$organisation" % "${moduleConfig.name}" % "$version")
-          |""".stripMargin
-      } else {
-        s"""
-           |"$organisation" %% "${moduleConfig.name}" % "$version"
-           |""".stripMargin
-      }
-    } else {
-      if (moduleConfig.isTestScope) {
-        s"""
-           |"$organisation" % "${moduleConfig.name}" % "$version" % Test
-           |""".stripMargin
-      } else {
-        s"""
-           |"$organisation" % "${moduleConfig.name}" % "$version"
-           |""".stripMargin
-      }
-    }
-  }.trim
+  override def render: String = moduleConfig.render(organisation, version)
 }
 
 case class MissingMavenOrgSearchResult(

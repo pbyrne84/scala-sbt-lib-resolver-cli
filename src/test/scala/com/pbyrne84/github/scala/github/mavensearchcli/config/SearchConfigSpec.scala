@@ -11,7 +11,7 @@ object SearchConfigSpec extends BaseSpec {
   override def spec: Spec[TestEnvironment with Scope, Any] =
     suite("SearchConfig")(
       test("should convert when there are hotList entries and validate entries exist in libs") {
-        val json = {
+        val json = jsonOps.formattedJsonUnsafe {
           s"""
             |{
             |  "defaultProductionVersionRegex" : ".*",
@@ -38,7 +38,7 @@ object SearchConfigSpec extends BaseSpec {
             |      "org": "dev.zio",
             |      "modules": [
             |         ${moduleJson("zio-logging-slf4j").spaces2},
-            |         ${moduleJson("zio-test", maybeIsTestScope = Some(true)).spaces2}
+            |         ${moduleJson("zio-test", maybeModuleType = Some(ScalaTestScope)).spaces2}
             |      ]
             |    }
             |  ]
@@ -50,7 +50,7 @@ object SearchConfigSpec extends BaseSpec {
           "circe",
           "io.circe",
           List(
-            ModuleConfig("circe-core", isTestScope = false)
+            ModuleConfig("circe-core", moduleType = ScalaNormalScope)
           )
         )
 
@@ -58,8 +58,8 @@ object SearchConfigSpec extends BaseSpec {
           "zio",
           "dev.zio",
           List(
-            ModuleConfig("zio-logging-slf4j", isTestScope = false),
-            ModuleConfig("zio-test", isTestScope = true)
+            ModuleConfig("zio-logging-slf4j", moduleType = ScalaNormalScope),
+            ModuleConfig("zio-test", moduleType = ScalaTestScope)
           )
         )
 
@@ -122,7 +122,7 @@ object SearchConfigSpec extends BaseSpec {
           "circe",
           "io.circe",
           List(
-            ModuleConfig("circe-core", isTestScope = false)
+            ModuleConfig("circe-core", moduleType = ScalaNormalScope)
           )
         )
 
@@ -152,16 +152,14 @@ object SearchConfigSpec extends BaseSpec {
 
   private def moduleJson(
       name: String,
-      maybeIsTestScope: Option[Boolean] = None,
-      maybeVersionPattern: Option[String] = None,
-      maybeIsScala: Option[Boolean] = None
+      maybeModuleType: Option[ModuleType] = None,
+      maybeVersionPattern: Option[String] = None
   ): Json = {
     Json.fromFields(
       Map(
         "name" -> Some(Json.fromString(name)),
-        "isTestScope" -> maybeIsTestScope.map(Json.fromBoolean),
-        "versionPattern" -> maybeVersionPattern.map(Json.fromString),
-        "isScala" -> maybeIsScala.map(Json.fromBoolean)
+        "moduleType" -> maybeModuleType.map(moduleType => Json.fromString(moduleType.textValue)),
+        "versionPattern" -> maybeVersionPattern.map(Json.fromString)
       ).collect { case (key, Some(json: Json)) => key -> json }
     )
   }

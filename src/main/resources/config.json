@@ -13,13 +13,14 @@
         "wiremock",
         "scoverage",
         "scalafmt",
-        "sbt-rewarn"
+        "sbt-rewarn",
+        "better-monadic-for"
       ]
     },
     {
       "name": "test-single",
       "refs": [
-        "assembly"
+        "better-monadic-for"
       ]
     }
   ],
@@ -45,7 +46,7 @@
       "modules": [
         {
           "name": "logback-classic",
-          "isScala": false
+          "moduleType": "java"
         }
       ]
     },
@@ -55,7 +56,7 @@
       "modules": [
         {
           "name": "logstash-logback-encoder",
-          "isScala": false
+          "moduleType": "java"
         }
       ]
     },
@@ -74,11 +75,11 @@
         },
         {
           "name": "zio-test",
-          "isTestScope": true
+          "moduleType": "scala-test"
         },
         {
           "name": "zio-test-sbt",
-          "isTestScope": true
+          "moduleType": "scala-test"
         }
       ]
     },
@@ -88,7 +89,7 @@
       "modules": [
         {
           "name": "sbt-scoverage",
-          "isSbtPlugin": true
+          "moduleType": "plugin"
         }
       ]
     },
@@ -98,7 +99,7 @@
       "modules": [
         {
           "name": "sbt-scalafmt",
-          "isSbtPlugin": true
+          "moduleType": "plugin"
         }
       ]
     },
@@ -108,7 +109,7 @@
       "modules": [
         {
           "name": "sbt-native-image",
-          "isSbtPlugin": true
+          "moduleType": "plugin"
         }
       ]
     },
@@ -118,7 +119,7 @@
       "modules": [
         {
           "name": "sbt-assembly",
-          "isSbtPlugin": true
+          "moduleType": "plugin"
         }
       ]
     },
@@ -128,7 +129,7 @@
       "modules": [
         {
           "name": "sbt-rewarn",
-          "isSbtPlugin": true
+          "moduleType": "plugin"
         }
       ]
     },
@@ -138,8 +139,17 @@
       "modules": [
         {
           "name": "wiremock",
-          "isTestScope": true,
-          "isScala": false
+          "moduleType": "java-test"
+        }
+      ]
+    },
+    {
+      "name": "better-monadic-for",
+      "org": "com.olegpy",
+      "modules": [
+        {
+          "name": "better-monadic-for",
+          "moduleType": "compiler-plugin"
         }
       ]
     }

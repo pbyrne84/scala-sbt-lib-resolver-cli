@@ -66,4 +66,15 @@ scalacOptions ++= Seq( // use ++= to add to existing options
   "-Xlint" // exploit "trailing comma" syntax so you can add an option without editing this line
 )
 
+//not to be used in ci, intellij has got a bit bumpy in the format on save
+val formatAndTest =
+  taskKey[Unit]("format all code then run tests, do not use on CI as any changes will not be committed")
+
+formatAndTest := {
+  (Compile / scalafmtAll)
+    .dependsOn(Compile / scalafmtAll)
+    .dependsOn(Test / test)
+}.value
+
+//coverage does not work on windows due to filepath issues
 //coverageEnabled := false

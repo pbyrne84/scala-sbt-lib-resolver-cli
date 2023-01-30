@@ -1,14 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{
-  JavaNormalScope,
-  JavaTestScope,
-  ModuleConfig,
-  ModuleType,
-  SbtPlugin,
-  ScalaNormalScope,
-  ScalaTestScope
-}
+import com.pbyrne84.github.scala.github.mavensearchcli.config._
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps

@@ -2,7 +2,7 @@
   "defaultProductionVersionRegex": "([\\d\\.]+)",
   "maximumPagesToPaginate": 2,
   "retryCount": 6,
-  "hotList": [
+  "hotLists": [
     {
       "name": "zio-app",
       "refs": [
@@ -20,11 +20,11 @@
     {
       "name": "test-single",
       "refs": [
-        "better-monadic-for"
+        "scoverage"
       ]
     }
   ],
-  "libs": [
+  "groups": [
     {
       "name": "circe",
       "org": "io.circe",

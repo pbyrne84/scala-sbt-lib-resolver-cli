@@ -1,10 +1,9 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.config
 
+import io.circe.Decoder
 import io.circe.generic.extras.Configuration
-import io.circe.{Decoder, DecodingFailure}
 
 import scala.annotation.unused
-import scala.util._
 
 object ModuleConfig {
   import io.circe.generic.extras.semiauto._
@@ -21,7 +20,7 @@ case class ModuleConfig(
     moduleType: ModuleType = ScalaNormalScope
 ) {
 
-  def versionedName(scalaVersion: ScalaVersion): String = {
+  def scalaVersionedName(scalaVersion: ScalaVersion): String = {
     if (moduleType.isScalaVersionedLib) {
       s"${name}_${scalaVersion.suffix}"
     } else {

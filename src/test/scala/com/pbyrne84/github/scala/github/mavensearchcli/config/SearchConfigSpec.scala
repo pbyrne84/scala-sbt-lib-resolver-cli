@@ -16,7 +16,7 @@ object SearchConfigSpec extends BaseSpec {
             |{
             |  "defaultProductionVersionRegex" : ".*",
             |  "maximumPagesToPaginate" : 2,
-            |  "hotList" : [
+            |  "hotLists" : [
             |     {
             |       "name" : "custom",
             |       "refs" : [ "circe", "zio" ]
@@ -25,7 +25,7 @@ object SearchConfigSpec extends BaseSpec {
             |       "refs" : [ "circe"]
             |     }
             |  ],
-            |  "libs": [
+            |  "groups": [
             |    {
             |      "name": "circe",
             |      "org": "io.circe",
@@ -46,7 +46,7 @@ object SearchConfigSpec extends BaseSpec {
             |""".stripMargin
         }
 
-        val circeOrgConfig = OrgConfig(
+        val circeOrgConfig = GroupConfig(
           "circe",
           "io.circe",
           List(
@@ -54,7 +54,7 @@ object SearchConfigSpec extends BaseSpec {
           )
         )
 
-        val zioOrgConfig = OrgConfig(
+        val zioOrgConfig = GroupConfig(
           "zio",
           "dev.zio",
           List(
@@ -66,11 +66,11 @@ object SearchConfigSpec extends BaseSpec {
         val expected = SearchConfig(
           defaultProductionVersionRegex = ".*",
           maximumPagesToPaginate = 2,
-          hotList = List(
+          hotLists = List(
             HotListItemConfig("custom", List("circe", "zio")),
             HotListItemConfig("hotCirce", List("circe"))
           ),
-          libs = List(
+          groups = List(
             circeOrgConfig,
             zioOrgConfig
           )
@@ -96,7 +96,7 @@ object SearchConfigSpec extends BaseSpec {
             |  "defaultProductionVersionRegex" : "\\\\w",
             |  "maximumPagesToPaginate" : 1,
             |  "retryCount" : 0,
-            |  "hotList" : [
+            |  "hotLists" : [
             |     {
             |       "name" : "custom",
             |       "refs" : [ "circe", "zio" ]
@@ -105,7 +105,7 @@ object SearchConfigSpec extends BaseSpec {
             |       "refs" : [ "circe"]
             |     }
             |  ],
-            |  "libs": [
+            |  "groups": [
             |    {
             |      "name": "circe",
             |      "org": "io.circe",
@@ -118,7 +118,7 @@ object SearchConfigSpec extends BaseSpec {
             |""".stripMargin
         }
 
-        val circeOrgConfig = OrgConfig(
+        val circeOrgConfig = GroupConfig(
           "circe",
           "io.circe",
           List(
@@ -129,11 +129,11 @@ object SearchConfigSpec extends BaseSpec {
         val expected = SearchConfig(
           defaultProductionVersionRegex = "\\w",
           maximumPagesToPaginate = 1,
-          hotList = List(
+          hotLists = List(
             HotListItemConfig("custom", List("circe", "zio")),
             HotListItemConfig("hotCirce", List("circe"))
           ),
-          libs = List(
+          groups = List(
             circeOrgConfig
           )
         )
@@ -141,11 +141,8 @@ object SearchConfigSpec extends BaseSpec {
         assertTrue(
           actual == Right(expected),
           actual.map(_.isValid) == Right(true),
-          actual.map(_.errorOrHotListMappings) == Right(
-            Left(
-              "The following lib configs are missing 'zio'"
-            )
-          )
+          actual.map(_.errorOrHotListMappings.mapErrorToClass) ==
+            Right(Left(classOf[MissingHotListException]))
         )
       }
     )

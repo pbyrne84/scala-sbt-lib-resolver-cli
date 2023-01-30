@@ -26,7 +26,7 @@ case class SearchParams(
     maxPagesToPaginate: Int,
     retryCount: Int
 ) {
-  val versionedModuleName: String = moduleConfig.versionedName(scalaVersion)
+  val versionedModuleName: String = moduleConfig.scalaVersionedName(scalaVersion)
 
 }
 

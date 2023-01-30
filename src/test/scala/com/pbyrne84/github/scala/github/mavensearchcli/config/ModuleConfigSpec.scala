@@ -2,7 +2,6 @@ package com.pbyrne84.github.scala.github.mavensearchcli.config
 
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
-import io.circe.Json
 import zio.Scope
 import zio.test._
 

@@ -6,7 +6,7 @@ import scala.util.{Failure, Success}
 
 object ModuleType {
 
-  private val valueMap: Map[String, ModuleType] = List(
+  val valueMap: Map[String, ModuleType] = List(
     ScalaNormalScope,
     ScalaTestScope,
     JavaNormalScope,

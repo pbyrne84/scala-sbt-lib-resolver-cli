@@ -345,6 +345,10 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.commandline.CommandLineArgsSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.ModuleConfigSpec$",
   "fields":[{"name":"MODULE$"}]
 },
@@ -381,6 +385,10 @@
 },
 {
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.maven.client.SolrSearchUrlSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.service.MavenSearchCliServiceSpec$",
   "fields":[{"name":"MODULE$"}]
 },
 {

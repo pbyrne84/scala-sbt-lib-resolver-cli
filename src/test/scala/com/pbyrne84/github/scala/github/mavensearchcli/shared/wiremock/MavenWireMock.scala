@@ -22,8 +22,25 @@ object MavenWireMock {
   def reset: ZIO[MavenWireMock, Throwable, Unit] =
     zioService(_.reset)
 
+  def stubSearchModule(
+      orgName: String,
+      moduleName: String,
+      result: List[RawSearchResult]
+  ): ZIO[MavenWireMock, Throwable, Unit] = {
+    val query = generateOrgOnlyQuery(orgName, moduleName)
+    stubSearchOrg(query, result)
+  }
+
+  private def generateOrgOnlyQuery(orgName: String, moduleName: String): String = {
+    s"g:$orgName AND a:$moduleName"
+  }
+
   def stubSearchOrg(expectedQuery: String, result: List[RawSearchResult]): ZIO[MavenWireMock, Throwable, Unit] =
     zioService(_.stubSearchOrg(expectedQuery, result))
+
+  private def generateTimeLimitedOrgQuery(orgName: String, moduleName: String, startTimeStampInMillis: Long): String = {
+    s"g:$orgName AND a:$moduleName AND timestamp:[$startTimeStampInMillis TO *]"
+  }
 
 }
 

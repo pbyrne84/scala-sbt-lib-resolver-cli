@@ -1,14 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{
-  JavaNormalScope,
-  JavaTestScope,
-  ModuleConfig,
-  SbtCompilerPlugin,
-  SbtPlugin,
-  ScalaNormalScope,
-  ScalaTestScope
-}
+import com.pbyrne84.github.scala.github.mavensearchcli.config._
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 
 object MavenOrgSearchResult {

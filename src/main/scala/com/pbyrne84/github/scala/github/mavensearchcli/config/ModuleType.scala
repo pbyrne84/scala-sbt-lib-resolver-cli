@@ -38,6 +38,7 @@ sealed abstract class ModuleType(val textValue: String) {
   lazy val isScalaVersionedLib: Boolean = this match {
     case _: ScalaNormalScope.type => true
     case _: ScalaTestScope.type => true
+    case _: SbtCompilerPlugin.type => true
     case _ => false
   }
 }

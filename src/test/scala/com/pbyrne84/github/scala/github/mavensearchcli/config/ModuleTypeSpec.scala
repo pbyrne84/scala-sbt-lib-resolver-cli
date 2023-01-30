@@ -48,7 +48,7 @@ object ModuleTypeSpec extends BaseSpec {
             SbtCompilerPlugin
           ).map(_.isScalaVersionedLib)
 
-          val expected = List(true, true, false, false, false, false)
+          val expected = List(true, true, false, false, false, true)
 
           assertTrue(actual == expected)
         }

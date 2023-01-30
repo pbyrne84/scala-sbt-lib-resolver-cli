@@ -16,7 +16,7 @@ object MavenOrgSearchResult {
   def comparable(mavenOrgSearchResult: MavenOrgSearchResult): String = {
     mavenOrgSearchResult match {
       case found: FoundMavenOrgSearchResult =>
-        // only really care about plugin order on success as they need a different implementation action
+        // enables grouping when ordering at the end
         val typeMarker = found.moduleConfig.moduleType match {
           case ScalaNormalScope => 1
           case ScalaTestScope => 2

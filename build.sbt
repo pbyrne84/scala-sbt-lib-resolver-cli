@@ -71,8 +71,16 @@ val formatAndTest =
   taskKey[Unit]("format all code then run tests, do not use on CI as any changes will not be committed")
 
 formatAndTest := {
-  (Compile / scalafmtAll)
+  (Test / test)
     .dependsOn(Compile / scalafmtAll)
+    .dependsOn(Test / scalafmtAll)
+}.value
+
+val testAndBuildAssembly =
+  taskKey[Unit]("run tests and build fat jar")
+
+testAndBuildAssembly := {
+  (assembly)
     .dependsOn(Test / test)
 }.value
 

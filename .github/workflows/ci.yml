@@ -15,48 +15,15 @@ jobs:
       - name: Run test and build fat jar
         run: |
           set -e
-          sudo apt-get update 
-          sudo apt-get install build-essential libz-dev zlib1g-dev 
-          git lfs install
-          date
-          date +%s%N | cut -b1-13
-          curl -s "https://get.sdkman.io" | bash
-          source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk version
-          sdk install scalacli
-          sdk list java
-          sdk install java 22.3.r11-grl
-          echo "boop"
-          gu install native-image
-          java --version
-          gu --version
-          native-image --version
-          sbt test
-          sbt assembly
-          mkdir -p binaries
-          cp target/scala-2.13/scala-sbt-lib-resolver-cli.jar binaries
-          git add -f binaries/scala-sbt-lib-resolver-cli.jar
+           
           git config user.name github-actions
           git config user.email github-actions@github.com
-          #  git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          native-image  --no-server \
-            --no-fallback \
-            --allow-incomplete-classpath \
-            --report-unsupported-elements-at-runtime \
-            --static \
-            --initialize-at-build-time=scala.runtime.Statics \
-            -H:ConfigurationFileDirectories=src/main/resources/META-INF/native-image \
-            -H:+ReportExceptionStackTraces \
-            -H:TraceClassInitialization=true \
-            -jar binaries/scala-sbt-lib-resolver-cli.jar          
-          ls -l
-          ./scala-sbt-lib-resolver-cli --hotlist test-single --config internal --debug
-          cd ..
-          ls -l
-          scala-sbt-lib-resolver-cli/scala-sbt-lib-resolver-cli --hotlist test-single --config src/main/resources/config.json --debug
-          cd scala-sbt-lib-resolver-cli
-          cp scala-sbt-lib-resolver-cli binaries/scala-sbt-lib-resolver-cli-linux
-          git add -f binaries/scala-sbt-lib-resolver-cli-linux
+          
+          # Shell scripting in yml is not fun
+          source ./.github/workflows/install_environment.sh
+          source ./.github/workflows/test_and_build_fat_jar.sh
+          source ./.github/workflows/build_native_image.sh
+
           git commit -m "add fat jar and linux executable"
           git push
 

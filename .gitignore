@@ -5,3 +5,4 @@ target
 .bsp
 scala-sbt-lib-resolver-cli.*
 *.dll
+scala-sbt-lib-resolver-cli

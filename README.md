@@ -157,8 +157,24 @@ It is also repeatable.
 Current build binaries can be found in the [binaries/](binaries/) directory. They are built by a GitHub action 
 [.github/workflows/ci.yml](.github/workflows/ci.yml).
 
-#### Building a binary
-For Ubuntu linux and OSX you can use [sdkman](https://sdkman.io/) to install them. 
+#### Using Docker to generate an Ubuntu Linux build
+The included [Dockerfile](Dockerfile) builds an Ubuntu image with all the dependencies installed. 
+
+```bash
+SET 
+docker build -t lib_resolver_vm .
+docker run --name lib_resolver_compile --mount src="$(pwd)",target=/root/project_mount,type=bind -t -d lib_resolver_vm
+docker exec -it lib_resolver_compile bash
+```
+
+Then navigate to **/root/project_root** and run [test_linux_build.sh](test_linux_build.sh). This will run the tests
+which generates any changes to the native image config in [src/main/resources/META-INF/native-image](src/main/resources/META-INF/native-image)
+then build the fat jar which is used by the **native-image** call.
+
+#### Building a binary for Linux or OSX 
+For Ubuntu linux and OSX you can use [sdkman](https://sdkman.io/) to install the base dependencies. For Ubuntu the following
+may need to be installed **build-essential libz-dev zlib1g-dev**. OSX maybe the odd duck and need different other
+dependencies than the following core dependencies.
 
 ```bash
 sdk install scalacli

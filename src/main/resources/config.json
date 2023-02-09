@@ -1,5 +1,8 @@
 {
-  "defaultProductionVersionRegex": "([\\d\\.]+)",
+  "defaults": {
+    "productionVersionRegex": "([\\d\\.]+)",
+    "hotList" :  "zio-app"
+  },
   "maximumPagesToPaginate": 2,
   "retryCount": 6,
   "hotLists": [

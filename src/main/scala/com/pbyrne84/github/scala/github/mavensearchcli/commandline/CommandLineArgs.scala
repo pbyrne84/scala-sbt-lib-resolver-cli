@@ -10,7 +10,8 @@ object CommandLineArgs {
       short = "h",
       help = "A hotList is a list of configured references you want to group, more than one can be comma seperated"
     )
-    .map(hotListName => HotListLookupType(hotListName))
+    .map(hotListName => CustomHotListLookupType(hotListName))
+    .withDefault(DefaultHotListLookupType)
 
   private val moduleGroupCommandLine: Opts[ModuleGroupLookupType] = Opts
     .option[String](
@@ -38,7 +39,7 @@ object CommandLineArgs {
   import cats.implicits._
 
   private val commandLineArgs: Opts[CommandLineArgs] = {
-    val lookupTypeCommand = hotListCommandLine orElse moduleGroupCommandLine
+    val lookupTypeCommand = moduleGroupCommandLine orElse hotListCommandLine
 
     (lookupTypeCommand, configPathCommand, enableDebugCommand).mapN { (lookupType, config, enableDebug) =>
       CommandLineArgs(lookupType, config, enableDebug)

@@ -26,12 +26,13 @@ object SearchConfig {
 }
 
 case class SearchConfig(
-    defaultProductionVersionRegex: String,
+    defaults: ConfigDefaults,
     maximumPagesToPaginate: Int, // search.maven.org can ban you for a while if too greedy
     private[config] val hotLists: List[HotListItemConfig],
     groups: List[GroupConfig],
     retryCount: Int = 0
 ) {
+  val defaultProductionVersionRegex: String = defaults.productionVersionRegex
   private val allLibNames = groups.map(_.name)
   val isValid: Boolean = hotLists.flatMap(_.refs).exists(ref => allLibNames.contains(ref))
 

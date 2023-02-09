@@ -9,7 +9,7 @@ import zio.{ZIO, ZLayer}
 
 object BaseSpec {
 
-  type SharedDeps = InitialisedPorts with MavenWireMock
+  type SharedDeps = MavenWireMock
 
   val sharedLayer = ZLayer.make[SharedDeps](
     InitialisedPorts.layer,

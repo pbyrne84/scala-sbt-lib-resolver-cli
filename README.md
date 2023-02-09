@@ -60,6 +60,23 @@ The configuration is read from the executable path so the executable can operate
 
 Adding **--debug** as an argument will enable debug level logging.
 
+The config used for these examples can be found in [src/main/resources/config.json](src/main/resources/config.json).
+It is enabled by passing **--config internal**.
+
+### Defaults
+The defaults are set in the defaults section of config
+
+```json
+{
+  "defaults": {
+    "productionVersionRegex": "([\\d\\.]+)",
+    "hotList": "zio-app"
+  }
+}
+```
+
+This allows the command line to skip **hotlist** and **group** arguments and just defer to the hotList set here.
+
 ### Hot Lists
 
 A hot list is just a group of module groups allowing quick lookups. I always forget a chunk of them until later.
@@ -86,8 +103,6 @@ addSbtPlugin( "org.scalameta" % "sbt-scalafmt" % "2.4.6" )
 addSbtPlugin( "org.scoverage" % "sbt-scoverage" % "2.0.5" )
 addCompilerPlugin( "com.olegpy" % "better-monadic-for" % "0.3.1" )
 ```
-
-The config can be found in [src/main/resources/config.json](src/main/resources/config.json)
 
 The config section that drives this looks something like
 

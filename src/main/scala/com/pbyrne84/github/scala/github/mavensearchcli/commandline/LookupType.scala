@@ -7,7 +7,13 @@ sealed trait LookupType {
       searchConfig: SearchConfig
   ): Either[MissingHotListException, List[GroupConfig]] =
     this match {
-      case HotListLookupType(hotListName) =>
+      case DefaultHotListLookupType =>
+        searchConfig.defaults.maybeHotList match {
+          case Some(defaultHotListName) => searchConfig.getHotListOrgConfigs(hotListName = defaultHotListName)
+          case None => Left(MissingHotListException("There is no default hotList configured in defaults.hotList"))
+        }
+
+      case CustomHotListLookupType(hotListName) =>
         searchConfig.getHotListOrgConfigs(hotListName)
 
       case ModuleGroupLookupType(moduleGroupName) =>
@@ -17,6 +23,8 @@ sealed trait LookupType {
     }
 }
 
-case class HotListLookupType(hotListName: String) extends LookupType
+sealed trait HotListLookupType extends LookupType
+case object DefaultHotListLookupType extends HotListLookupType
+case class CustomHotListLookupType(hotListName: String) extends HotListLookupType
 
 case class ModuleGroupLookupType(moduleGroupName: String) extends LookupType

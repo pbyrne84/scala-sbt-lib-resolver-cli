@@ -14,6 +14,10 @@ object SearchConfigSpec extends BaseSpec {
         val json = jsonOps.formattedJsonUnsafe {
           s"""
             |{
+            |  "defaults" : {
+            |     "productionVersionRegex" : ".*",
+            |     "hotList" : "custom"
+            |  },
             |  "defaultProductionVersionRegex" : ".*",
             |  "maximumPagesToPaginate" : 2,
             |  "hotLists" : [
@@ -64,7 +68,7 @@ object SearchConfigSpec extends BaseSpec {
         )
 
         val expected = SearchConfig(
-          defaultProductionVersionRegex = ".*",
+          defaults = ConfigDefaults(productionVersionRegex = ".*", maybeHotList = Some("custom")),
           maximumPagesToPaginate = 2,
           hotLists = List(
             HotListItemConfig("custom", List("circe", "zio")),
@@ -93,7 +97,9 @@ object SearchConfigSpec extends BaseSpec {
         val json = {
           s"""
             |{
-            |  "defaultProductionVersionRegex" : "\\\\w",
+            |  "defaults" : {
+            |     "productionVersionRegex" :  "\\\\w"
+            |   },
             |  "maximumPagesToPaginate" : 1,
             |  "retryCount" : 0,
             |  "hotLists" : [
@@ -127,7 +133,7 @@ object SearchConfigSpec extends BaseSpec {
         )
 
         val expected = SearchConfig(
-          defaultProductionVersionRegex = "\\w",
+          defaults = ConfigDefaults(productionVersionRegex = "\\w"),
           maximumPagesToPaginate = 1,
           hotLists = List(
             HotListItemConfig("custom", List("circe", "zio")),

@@ -1,6 +1,7 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.commandline
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{GroupConfig, MissingHotListException, SearchConfig}
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{GroupConfig, SearchConfig}
+import com.pbyrne84.github.scala.github.mavensearchcli.error.MissingHotListException
 
 sealed trait LookupType {
   def getOrgConfigsForLookup(

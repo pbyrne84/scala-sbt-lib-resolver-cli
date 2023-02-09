@@ -20,9 +20,9 @@ case class ModuleConfig(
     moduleType: ModuleType = ScalaNormalScope
 ) {
 
-  def scalaVersionedName(scalaVersion: ScalaVersion): String = {
+  def scalaVersionedName(scalaVersion: ValidScalaVersion): String = {
     if (moduleType.isScalaVersionedLib) {
-      s"${name}_${scalaVersion.suffix}"
+      s"${name}_${scalaVersion.versionText}"
     } else {
       name
     }

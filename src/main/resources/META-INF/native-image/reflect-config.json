@@ -361,6 +361,10 @@
   "fields":[{"name":"MODULE$"}]
 },
 {
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.ScalaVersionSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.SearchConfigReaderSpec$",
   "fields":[{"name":"MODULE$"}]
 },

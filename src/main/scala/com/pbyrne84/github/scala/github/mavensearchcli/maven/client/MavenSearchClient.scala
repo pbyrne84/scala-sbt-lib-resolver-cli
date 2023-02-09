@@ -1,7 +1,8 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.maven.client
 
 import com.pbyrne84.github.scala.github.mavensearchcli.ZIOServiced
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{CommandLineConfig, ModuleConfig, ScalaVersion}
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{CommandLineConfig, ModuleConfig, ValidScalaVersion}
+import com.pbyrne84.github.scala.github.mavensearchcli.error.CliException
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.{
   FoundMavenOrgSearchResult,
   MavenOrgSearchResult,
@@ -20,7 +21,7 @@ case class UnExpectedMavenResponseError(message: String, maybeCause: Option[Thro
 case class SearchParams(
     orgName: String,
     moduleConfig: ModuleConfig,
-    scalaVersion: ScalaVersion,
+    scalaVersion: ValidScalaVersion,
     versionPattern: String,
     maybeWithinSeconds: Option[Int],
     maxPagesToPaginate: Int,
@@ -39,7 +40,7 @@ object MavenSearchClient extends ZIOServiced[MavenSearchClient] {
 
   def searchOrg(
       searchParams: SearchParams
-  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, Throwable, MavenOrgSearchResult] =
+  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, CliException, MavenOrgSearchResult] =
     serviced(_.searchOrg(searchParams)).retryN(6)
 
 }
@@ -54,7 +55,7 @@ class MavenSearchClient(pageSize: Int) {
 
   def searchOrg(
       searchParams: SearchParams
-  ): ZIO[NowProvider with MavenSingleSearch, Throwable, MavenOrgSearchResult] = {
+  ): ZIO[NowProvider with MavenSingleSearch, CliException, MavenOrgSearchResult] = {
     val startIndex = 0
     for {
       _ <- ZIO.logDebug(s"searching maven using $searchParams")
@@ -80,7 +81,7 @@ class MavenSearchClient(pageSize: Int) {
       searchResults: MavenOrgSearchResults,
       maybeFirstPageSearchResult: Option[RawSearchResult],
       searchParams: SearchParams
-  ): ZIO[NowProvider with MavenSingleSearch, Throwable, MavenOrgSearchResult] = {
+  ): ZIO[NowProvider with MavenSingleSearch, CliException, MavenOrgSearchResult] = {
     maybeFirstPageSearchResult match {
       case Some(value) =>
         ZIO.succeed(FoundMavenOrgSearchResult(value, searchParams.moduleConfig))
@@ -101,7 +102,7 @@ class MavenSearchClient(pageSize: Int) {
       pagesAvailable: Int,
       currentPage: Int,
       foundVersions: List[String]
-  ): ZIO[NowProvider with MavenSingleSearch, Throwable, MavenOrgSearchResult] = {
+  ): ZIO[NowProvider with MavenSingleSearch, CliException, MavenOrgSearchResult] = {
     val versionModuleName = searchParams.versionedModuleName
 
     if (pagesAvailable == 0 || currentPage > pagesAvailable || currentPage > searchParams.maxPagesToPaginate) {

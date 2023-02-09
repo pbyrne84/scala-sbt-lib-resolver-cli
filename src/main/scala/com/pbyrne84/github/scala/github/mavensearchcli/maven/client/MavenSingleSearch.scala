@@ -2,20 +2,17 @@ package com.pbyrne84.github.scala.github.mavensearchcli.maven.client
 
 import com.pbyrne84.github.scala.github.mavensearchcli.ZIOServiced
 import com.pbyrne84.github.scala.github.mavensearchcli.config.CommandLineConfig
+import com.pbyrne84.github.scala.github.mavensearchcli.error.{
+  JsonDecodingSingleSearchException,
+  NetworkSingleSearchException,
+  SingleSearchException,
+  UnexpectedSingleSearchException
+}
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.MavenOrgSearchResults
 import sttp.client3.Response
 import sttp.client3.httpclient.zio.HttpClientZioBackend
 import zio.config.ReadError
 import zio.{Cause, IO, ZIO, ZLayer}
-
-sealed abstract class SingleSearchException(message: String, cause: Throwable) extends RuntimeException(message, cause)
-
-case class NetworkSingleSearchException(invalidUrl: String, cause: Throwable)
-    extends SingleSearchException(s"The url '$invalidUrl' failed with ${cause.getMessage}", cause)
-
-case class JsonDecodingSingleSearchException(cause: Throwable) extends SingleSearchException(cause.getMessage, cause)
-
-case class UnexpectedSingleSearchException(cause: Throwable) extends SingleSearchException(cause.getMessage, cause)
 
 object MavenSingleSearch extends ZIOServiced[MavenSingleSearch] {
 

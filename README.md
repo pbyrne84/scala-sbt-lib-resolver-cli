@@ -1,7 +1,7 @@
 # scala-sbt-lib-resolver-cli
 
 A command line utility to allow you to get all your favourite lib details in sbt
-format easily.
+format easily. Technologies used includes Graal for native compiles, ZIO 2, STTP, Decline, Circe and Docker.
 
 It can handle
 
@@ -47,12 +47,13 @@ There is also a retry setting as the search can be a bit bumpy.
 
 ## Command line args
 
-|           | value                                                                                         | Example              |
-|-----------|:----------------------------------------------------------------------------------------------|----------------------|
-| --hotlist | name of the hot list in the json                                                              | --hotlist zio-app    |
-| --group   | name of a group of libraries tied to an organisation                                          | --group circe        |
-| --debug   | switches log level to debug                                                                   | --debug              |
-| --config  | Either the path to the config from the executable root or internal for <br/>the built in one. | --config config.json |
+|           | value                                                                                                          | Example                     |
+|-----------|:---------------------------------------------------------------------------------------------------------------|-----------------------------|
+| --hotlist | name of the hot list in the json                                                                               | --hotlist zio-app           |
+| --group   | name of a group of libraries tied to an organisation                                                           | --group circe               |
+| --debug   | switches log level to debug                                                                                    | --debug                     |
+| --config  | Either the path to the config from the executable root or internal for <br/>the built in one.                  | --config config.json        |
+| --version | Enables switching from the default scala version of 2.13, handy if you want to see if libs are available in 3. | --version 3 (or 2.12,2.13) |
 
 The configuration is read from the executable path so the executable can operate on the path easily.
 

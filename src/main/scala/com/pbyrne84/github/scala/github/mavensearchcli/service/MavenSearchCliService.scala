@@ -2,7 +2,13 @@ package com.pbyrne84.github.scala.github.mavensearchcli.service
 
 import com.pbyrne84.github.scala.github.mavensearchcli.ZIOServiced
 import com.pbyrne84.github.scala.github.mavensearchcli.commandline.LookupType
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{GroupConfig, ModuleConfig, ScalaVersion, SearchConfig}
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{
+  GroupConfig,
+  ModuleConfig,
+  SearchConfig,
+  ValidScalaVersion
+}
+import com.pbyrne84.github.scala.github.mavensearchcli.error.CliException
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.MavenOrgSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   MavenSearchClient,
@@ -20,8 +26,8 @@ object MavenSearchCliService extends ZIOServiced[MavenSearchCliService] {
   def run(
       searchConfig: SearchConfig,
       lookup: LookupType,
-      scalaVersion: ScalaVersion
-  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient with MavenSearchCliService, Throwable, List[
+      scalaVersion: ValidScalaVersion
+  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient with MavenSearchCliService, CliException, List[
     MavenOrgSearchResult
   ]] = serviced(_.run(searchConfig, lookup, scalaVersion))
 }
@@ -31,10 +37,10 @@ class MavenSearchCliService {
   def run(
       searchConfig: SearchConfig,
       lookup: LookupType,
-      scalaVersion: ScalaVersion
-  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, Throwable, List[MavenOrgSearchResult]] = {
+      scalaVersion: ValidScalaVersion
+  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, CliException, List[MavenOrgSearchResult]] = {
     for {
-      _ <- ZIO.attempt(println(s"current lookup is ${lookup}"))
+      _ <- ZIO.succeed(println(s"current lookup is ${lookup}"))
       orgConfigs <- ZIO.fromEither(lookup.getOrgConfigsForLookup(searchConfig))
       results <- ZIO
         .foreach(orgConfigs) { orgConfig =>
@@ -42,14 +48,13 @@ class MavenSearchCliService {
         }
         .map(_.flatten)
     } yield results
-
   }
 
   private def searchUsingConfig(
       searchConfig: SearchConfig,
       orgConfig: GroupConfig,
-      scalaVersion: ScalaVersion
-  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, Throwable, List[MavenOrgSearchResult]] = {
+      scalaVersion: ValidScalaVersion
+  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, CliException, List[MavenOrgSearchResult]] = {
     val maybeWithinSeconds = None
 
     ZIO

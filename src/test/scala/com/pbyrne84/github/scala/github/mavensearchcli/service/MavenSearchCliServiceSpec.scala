@@ -3,6 +3,7 @@ package com.pbyrne84.github.scala.github.mavensearchcli.service
 import cats.data.NonEmptyList
 import com.pbyrne84.github.scala.github.mavensearchcli.commandline.{CustomHotListLookupType, ModuleGroupLookupType}
 import com.pbyrne84.github.scala.github.mavensearchcli.config._
+import com.pbyrne84.github.scala.github.mavensearchcli.error.MissingHotListException
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   MavenSearchClient,
   MavenSingleSearch,
@@ -95,7 +96,7 @@ object MavenSearchCliServiceSpec extends BaseSpec {
   }
 
   private def stubWireMockForHotList(
-      scalaVersion: ScalaVersion,
+      scalaVersion: ValidScalaVersion,
       searchConfig: SearchConfig,
       hotListName: String
   ): ZIO[MavenWireMock, Throwable, NonEmptyList[MavenOrgSearchResult]] = {
@@ -106,7 +107,7 @@ object MavenSearchCliServiceSpec extends BaseSpec {
   }
 
   private def createStubbingsForOrgConfigs(
-      scalaVersion: ScalaVersion,
+      scalaVersion: ValidScalaVersion,
       orgConfigs: List[GroupConfig]
   ): ZIO[MavenWireMock, Throwable, NonEmptyList[FoundMavenOrgSearchResult]] = {
 
@@ -119,7 +120,7 @@ object MavenSearchCliServiceSpec extends BaseSpec {
   }
 
   private def createStubbingsForOrgConfig(
-      scalaVersion: ScalaVersion,
+      scalaVersion: ValidScalaVersion,
       orgConfig: GroupConfig
   ): ZIO[MavenWireMock, Throwable, List[FoundMavenOrgSearchResult]] = {
     ZIO
@@ -135,7 +136,7 @@ object MavenSearchCliServiceSpec extends BaseSpec {
   }
 
   private def stubWireMockForOrgConfig(
-      scalaVersion: ScalaVersion,
+      scalaVersion: ValidScalaVersion,
       searchConfig: SearchConfig,
       orgConfigReferenceName: String
   ): ZIO[MavenWireMock, Throwable, NonEmptyList[FoundMavenOrgSearchResult]] = {

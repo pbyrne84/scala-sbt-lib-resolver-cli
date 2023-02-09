@@ -4,6 +4,7 @@ import ch.qos.logback.classic
 import ch.qos.logback.classic.LoggerContext
 import com.pbyrne84.github.scala.github.mavensearchcli.commandline.CommandLineArgs
 import com.pbyrne84.github.scala.github.mavensearchcli.config._
+import com.pbyrne84.github.scala.github.mavensearchcli.error.CliException
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.MavenOrgSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{MavenSearchClient, MavenSingleSearch, NowProvider}
 import com.pbyrne84.github.scala.github.mavensearchcli.service.MavenSearchCliService
@@ -22,7 +23,12 @@ object MavenSearchCliApp extends ZIOAppDefault {
       rawArgs <- ZIOAppArgs.getArgs
       parsedArgs <- ZIO.fromEither(CommandLineArgs.fromCliArgs(rawArgs.toList))
       _ <- initialiseLogLevel(parsedArgs.enableDebug)
-      searchResults <- executeUsingArgs(parsedArgs)
+      searchResults <- executeUsingArgs(parsedArgs).provide(
+        MavenSearchClient.layer,
+        NowProvider.layer,
+        MavenSingleSearch.layer,
+        MavenSearchCliService.layer
+      )
       _ <- ZIO.logDebug(searchResults.toString)
     } yield ()).provideSome[ZIOAppArgs](loggingLayer)
   }
@@ -46,13 +52,17 @@ object MavenSearchCliApp extends ZIOAppDefault {
 
   }
 
-  private def executeUsingArgs(commandLineArgs: CommandLineArgs): ZIO[Any, Throwable, List[MavenOrgSearchResult]] = {
+  private def executeUsingArgs(
+      commandLineArgs: CommandLineArgs
+  ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient with MavenSearchCliService, CliException, List[
+    MavenOrgSearchResult
+  ]] = {
     for {
       searchConfiguration <- new SearchConfigReader().fromCommandLineValue(commandLineArgs.configOption)
       searchConfig <- ZIO.fromEither(SearchConfig.decodeFromString(searchConfiguration))
+      scalaVersion = commandLineArgs.getScalaVersion(searchConfig)
       searchResults <- MavenSearchCliService
-        .run(searchConfig, commandLineArgs.lookup, ScalaVersion213)
-        .provide(MavenSearchClient.layer, NowProvider.layer, MavenSingleSearch.layer, MavenSearchCliService.layer)
+        .run(searchConfig, commandLineArgs.lookup, scalaVersion)
       _ = searchResults
         .sortBy(MavenOrgSearchResult.comparable)
         .foreach(result => println(result.render))

@@ -38,10 +38,6 @@ object MavenWireMock {
   def stubSearchOrg(expectedQuery: String, result: List[RawSearchResult]): ZIO[MavenWireMock, Throwable, Unit] =
     zioService(_.stubSearchOrg(expectedQuery, result))
 
-  private def generateTimeLimitedOrgQuery(orgName: String, moduleName: String, startTimeStampInMillis: Long): String = {
-    s"g:$orgName AND a:$moduleName AND timestamp:[$startTimeStampInMillis TO *]"
-  }
-
 }
 
 class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {

@@ -1,7 +1,7 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.service
 
 import cats.data.NonEmptyList
-import com.pbyrne84.github.scala.github.mavensearchcli.commandline.{HotListLookupType, ModuleGroupLookupType}
+import com.pbyrne84.github.scala.github.mavensearchcli.commandline.{CustomHotListLookupType, ModuleGroupLookupType}
 import com.pbyrne84.github.scala.github.mavensearchcli.config._
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.{
   MavenSearchClient,
@@ -29,10 +29,11 @@ object MavenSearchCliServiceSpec extends BaseSpec {
             hostListName = "hotlist-1"
             scalaVersion = ScalaVersion213
             stubbedResults <- stubWireMockForHotList(scalaVersion, config, hotListName = hostListName)
-            actualResults <- MavenSearchCliService.run(config, HotListLookupType(hostListName), scalaVersion).flatMap {
-              results =>
+            actualResults <- MavenSearchCliService
+              .run(config, CustomHotListLookupType(hostListName), scalaVersion)
+              .flatMap { results =>
                 ZIO.fromEither(results.asNonEmptyList)
-            }
+              }
           } yield assertTrue(actualResults == stubbedResults && actualResults.size == 12)
         },
         test("should process org lookup successfully and find all types") {
@@ -56,7 +57,9 @@ object MavenSearchCliServiceSpec extends BaseSpec {
         test("should error when hotList is not found") {
           for {
             _ <- reset
-            error <- MavenSearchCliService.run(createSearchConfig, HotListLookupType("unknown"), ScalaVersion213).flip
+            error <- MavenSearchCliService
+              .run(createSearchConfig, CustomHotListLookupType("unknown"), ScalaVersion213)
+              .flip
           } yield assert(error)(isSubtype[MissingHotListException](Assertion.anything))
         }
       )
@@ -84,7 +87,7 @@ object MavenSearchCliServiceSpec extends BaseSpec {
     }
 
     SearchConfig(
-      defaultProductionVersionRegex = ".*",
+      defaults = ConfigDefaults(".*"),
       maximumPagesToPaginate = 5,
       hotLists = hotListItemConfigs,
       groups = orgs

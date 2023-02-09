@@ -50,8 +50,7 @@ class MavenSearchCliService {
       orgConfig: GroupConfig,
       scalaVersion: ScalaVersion
   ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, Throwable, List[MavenOrgSearchResult]] = {
-    val days = 365
-    val maybeWithinSeconds = None // Some(days * 24 * 60 * 60)
+    val maybeWithinSeconds = None
 
     ZIO
       .foreach(orgConfig.modules) { module: ModuleConfig =>

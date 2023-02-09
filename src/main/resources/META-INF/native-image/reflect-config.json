@@ -349,6 +349,10 @@
   "fields":[{"name":"MODULE$"}]
 },
 {
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.commandline.LookupTypeSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.ModuleConfigSpec$",
   "fields":[{"name":"MODULE$"}]
 },
@@ -447,10 +451,7 @@
   "allDeclaredClasses":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"getClass","parameterTypes":[] }, 
-    {"name":"toString","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getClass","parameterTypes":[] }]
 },
 {
   "name":"java.lang.ProcessHandle",
@@ -474,7 +475,6 @@
   "name":"java.lang.StackWalker",
   "methods":[
     {"name":"getInstance","parameterTypes":["java.lang.StackWalker$Option"] }, 
-    {"name":"getInstance","parameterTypes":["java.util.Set","int"] }, 
     {"name":"walk","parameterTypes":["java.util.function.Function"] }
   ]
 },
@@ -483,13 +483,7 @@
 },
 {
   "name":"java.lang.StackWalker$StackFrame",
-  "methods":[
-    {"name":"getClassName","parameterTypes":[] }, 
-    {"name":"getDeclaringClass","parameterTypes":[] }, 
-    {"name":"getFileName","parameterTypes":[] }, 
-    {"name":"getLineNumber","parameterTypes":[] }, 
-    {"name":"getMethodName","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getDeclaringClass","parameterTypes":[] }]
 },
 {
   "name":"java.lang.String"
@@ -1004,15 +998,19 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"sun.security.provider.DRBG",
+  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
   "name":"sun.security.provider.JavaKeyStore$JKS",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"sun.security.provider.NativePRNG",
+  "name":"sun.security.provider.SHA",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"sun.security.provider.SHA",
+  "name":"sun.security.provider.SHA2$SHA256",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {

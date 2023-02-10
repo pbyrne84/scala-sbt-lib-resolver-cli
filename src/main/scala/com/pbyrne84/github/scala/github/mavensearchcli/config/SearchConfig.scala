@@ -1,11 +1,10 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.config
+import com.pbyrne84.github.scala.github.mavensearchcli.error.{MissingHotListException, SearchConfigDecodingException}
 import io.circe.Decoder
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
 
 import scala.annotation.{tailrec, unused}
-
-case class MissingHotListException(message: String) extends RuntimeException(message)
 
 object SearchConfig {
 
@@ -17,11 +16,11 @@ object SearchConfig {
 
   implicit val orgConfigDecoder: Decoder[GroupConfig] = deriveConfiguredDecoder[GroupConfig]
 
-  def decodeFromString(input: String): Either[RuntimeException, SearchConfig] =
+  def decodeFromString(input: String): Either[SearchConfigDecodingException, SearchConfig] =
     io.circe.parser
       .decode[SearchConfig](input)
       .left
-      .map(error => new RuntimeException(s"${error.getMessage} cannot parse $input", error))
+      .map(error => SearchConfigDecodingException(s"${error.getMessage} cannot parse $input", error))
 
 }
 

@@ -21,4 +21,8 @@ object ConfigDefaults {
   implicit val defaultConfigsDecoder: Decoder[ConfigDefaults] = deriveConfiguredDecoder[ConfigDefaults]
 
 }
-case class ConfigDefaults(productionVersionRegex: String = "([\\d\\.]+)", maybeHotList: Option[String] = None)
+case class ConfigDefaults(
+    productionVersionRegex: String = "([\\d\\.]+)",
+    maybeHotList: Option[String] = None,
+    defaultScalaVersion: ValidScalaVersion = ScalaVersion213
+)

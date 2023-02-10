@@ -1,5 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.config
 
+import com.pbyrne84.github.scala.github.mavensearchcli.error.ConfigReaderException
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import zio.test.Assertion._

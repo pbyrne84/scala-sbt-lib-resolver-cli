@@ -1,13 +1,7 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.commandline
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{
-  ConfigDefaults,
-  GroupConfig,
-  HotListItemConfig,
-  MissingHotListException,
-  ModuleConfig,
-  SearchConfig
-}
+import com.pbyrne84.github.scala.github.mavensearchcli.config._
+import com.pbyrne84.github.scala.github.mavensearchcli.error.MissingHotListException
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import zio.Scope

@@ -4,13 +4,12 @@ import com.pbyrne84.github.scala.github.mavensearchcli.config.SearchConfigReader
   defaultCommandLineOption,
   defaultFileName
 }
+import com.pbyrne84.github.scala.github.mavensearchcli.error.ConfigReaderException
 import zio.ZIO
 
 import java.io.File
 import scala.io.Source
 import scala.util.Using
-
-case class ConfigReaderException(message: String, cause: Throwable) extends RuntimeException(message, cause)
 
 class SearchConfigReader {
 

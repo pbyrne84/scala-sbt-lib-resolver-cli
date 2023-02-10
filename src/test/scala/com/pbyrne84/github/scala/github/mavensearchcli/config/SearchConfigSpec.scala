@@ -1,5 +1,6 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.config
 
+import com.pbyrne84.github.scala.github.mavensearchcli.error.MissingHotListException
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import io.circe.Json
 import zio.Scope

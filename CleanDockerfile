@@ -1,0 +1,8 @@
+# Enables the ability to check our binary is truly native as there is no java installed.
+FROM ubuntu:22.04
+SHELL ["/bin/bash", "-c"]
+RUN apt-get update -y
+RUN apt-get install -y locales
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8

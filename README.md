@@ -47,12 +47,12 @@ There is also a retry setting as the search can be a bit bumpy.
 
 ## Command line args
 
-|           | value                                                                                                          | Example                     |
-|-----------|:---------------------------------------------------------------------------------------------------------------|-----------------------------|
-| --hotlist | name of the hot list in the json                                                                               | --hotlist zio-app           |
-| --group   | name of a group of libraries tied to an organisation                                                           | --group circe               |
-| --debug   | switches log level to debug                                                                                    | --debug                     |
-| --config  | Either the path to the config from the executable root or internal for <br/>the built in one.                  | --config config.json        |
+|           | value                                                                                                          | Example                    |
+|-----------|:---------------------------------------------------------------------------------------------------------------|----------------------------|
+| --hotlist | name of the hot list in the json                                                                               | --hotlist zio-app          |
+| --group   | name of a group of libraries tied to an organisation                                                           | --group circe              |
+| --debug   | switches log level to debug                                                                                    | --debug                    |
+| --config  | Either the path to the config from the executable root or internal for <br/>the built in one.                  | --config config.json       |
 | --version | Enables switching from the default scala version of 2.13, handy if you want to see if libs are available in 3. | --version 3 (or 2.12,2.13) |
 
 The configuration is read from the executable path so the executable can operate on the path easily.
@@ -65,6 +65,7 @@ The config used for these examples can be found in [src/main/resources/config.js
 It is enabled by passing **--config internal**.
 
 ### Defaults
+
 The defaults are set in the defaults section of config
 
 ```json
@@ -153,9 +154,11 @@ Running **MavenSearchCliApp** with **--group circe --config internal** will look
 will look up "circe-core", "circe-parser", "circe-generic".
 
 ## Binaries
-The binaries are built using the 22.3.r11-grl version of Graal Java. This allows executables to be built that do not need
-a jvm to run. Using Graal also allows java libraries to be used as well. Java libraries can cause problems with the 
-amount of reflection they can use as Graal will only include calculable paths but this can be mitigated if everything is 
+
+The binaries are built using the 22.3.r11-grl version of Graal Java. This allows executables to be built that do not
+need
+a jvm to run. Using Graal also allows java libraries to be used as well. Java libraries can cause problems with the
+amount of reflection they can use as Graal will only include calculable paths but this can be mitigated if everything is
 well tested. We can then fork the tests and add the agent to the test run.
 
 ```scala
@@ -163,18 +166,20 @@ fork := true
 Test / javaOptions += "-agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image"
 ```
 
-All the files in the [src/main/resources/META-INF/native-image](src/main/resources/META-INF/native-image) folder are then 
+All the files in the [src/main/resources/META-INF/native-image](src/main/resources/META-INF/native-image) folder are
+then
 auto generated. There can be a lot of junk in them which can raise warnings. I have also played with filtering out
 stuff post run. It is way easier to get tests to do the calls exercising things like reflection than manually doing it.
 It is also repeatable.
 
 ### Current built binaries
 
-Current build binaries can be found in the [binaries/](binaries/) directory. They are built by a GitHub action 
+Current build binaries can be found in the [binaries/](binaries/) directory. They are built by a GitHub action
 [.github/workflows/ci.yml](.github/workflows/ci.yml).
 
 #### Using Docker to generate an Ubuntu Linux build
-The included [Dockerfile](Dockerfile) builds an Ubuntu image with all the dependencies installed. 
+
+The included [Dockerfile](Dockerfile) builds an Ubuntu image with all the dependencies installed.
 
 ```bash
 SET 
@@ -184,11 +189,14 @@ docker exec -it lib_resolver_compile bash
 ```
 
 Then navigate to **/root/project_root** and run [test_linux_build.sh](test_linux_build.sh). This will run the tests
-which generates any changes to the native image config in [src/main/resources/META-INF/native-image](src/main/resources/META-INF/native-image)
+which generates any changes to the native image config
+in [src/main/resources/META-INF/native-image](src/main/resources/META-INF/native-image)
 then build the fat jar which is used by the **native-image** call.
 
-#### Building a binary for Linux or OSX 
-For Ubuntu linux and OSX you can use [sdkman](https://sdkman.io/) to install the base dependencies. For Ubuntu the following
+#### Building a binary for Linux or OSX
+
+For Ubuntu linux and OSX you can use [sdkman](https://sdkman.io/) to install the base dependencies. For Ubuntu the
+following
 may need to be installed **build-essential libz-dev zlib1g-dev**. OSX maybe the odd duck and need different other
 dependencies than the following core dependencies.
 
@@ -199,13 +207,14 @@ sdk install java 22.3.r11-grl
 gu install native-image
 ```
 
-And then 
+And then
 
 ```bash
 sbt testAndBuildAssembly
 ```
 
-Will build the fat jar if you do not want to trust the one in the [binaries/](binaries/) directory. Personally I wouldn't
+Will build the fat jar if you do not want to trust the one in the [binaries/](binaries/) directory. Personally I
+wouldn't
 as I could be anyone :)
 
 After the tests have run generating any [native-image](src%2Fmain%2Fresources%2FMETA-INF%2Fnative-image) config changes
@@ -230,5 +239,5 @@ which can then be run with
 ./scala-sbt-lib-resolver-cli --hotlist test-single --config internal --debug
 ```
 
-This will use the internal config, **test-single** is an alias I use when I want to test a single item 
+This will use the internal config, **test-single** is an alias I use when I want to test a single item
 hotList.

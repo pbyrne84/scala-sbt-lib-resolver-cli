@@ -7,21 +7,19 @@ object MavenOrgSearchResult {
 
   def comparable(mavenOrgSearchResult: MavenOrgSearchResult): String = {
     mavenOrgSearchResult match {
+      case missing: MissingMavenOrgSearchResult =>
+        s"1_${missing.organisation}_${missing.moduleName}"
+
       case found: FoundMavenOrgSearchResult =>
         // enables grouping when ordering at the end
         val typeMarker = found.moduleConfig.moduleType match {
-          case ScalaNormalScope => 1
-          case ScalaTestScope => 2
-          case JavaNormalScope => 3
-          case JavaTestScope => 4
-          case SbtPlugin => 5
-          case SbtCompilerPlugin => 6
+          case ScalaNormalScope | JavaNormalScope => 1
+          case ScalaTestScope | JavaTestScope => 2
+          case SbtPlugin => 3
+          case SbtCompilerPlugin => 4
         }
 
         s"0_${typeMarker}_${found.organisation}_${found.moduleConfig.name}"
-
-      case missing: MissingMavenOrgSearchResult =>
-        s"1_${missing.organisation}_${missing.moduleName}"
 
     }
   }

@@ -24,22 +24,20 @@ object MavenSingleSearch extends ZIOServiced[MavenSingleSearch] {
 
   def runQuery(
       searchParams: SearchParams,
-      startIndex: Int,
-      maybeWithinSeconds: Option[Int]
+      startIndex: Int
   ): ZIO[NowProvider with MavenSingleSearch, SingleSearchException, MavenOrgSearchResults] =
-    serviced(_.runQuery(searchParams, startIndex, maybeWithinSeconds))
+    serviced(_.runQuery(searchParams, startIndex))
 }
 
 class MavenSingleSearch(mavenHostUrl: String, pageSize: Int) {
 
   def runQuery(
       searchParams: SearchParams,
-      startIndex: Int,
-      maybeWithinSeconds: Option[Int]
+      startIndex: Int
   ): ZIO[NowProvider, SingleSearchException, MavenOrgSearchResults] = {
     import sttp.client3._ // all the basicRequest/asStringAlways stuff etc.
 
-    val eventualSearchTerms: ZIO[NowProvider, Nothing, String] = maybeWithinSeconds
+    val eventualSearchTerms: ZIO[NowProvider, Nothing, String] = searchParams.maybeWithinSeconds
       .map { withinSeconds =>
         for {
           now <- NowProvider.getNow
@@ -48,8 +46,9 @@ class MavenSingleSearch(mavenHostUrl: String, pageSize: Int) {
       }
       .getOrElse(ZIO.succeed(s"g:${searchParams.orgName} AND a:${searchParams.versionedModuleName}"))
 
-    (for {
+    for {
       backend <- HttpClientZioBackend()
+        .mapError(error => UnexpectedSingleSearchException(error))
       searchTerms <- eventualSearchTerms
       searchUri =
         uri"${mavenHostUrl.stripSuffix("/")}/select?core=gav&q=$searchTerms&rows=$pageSize&start=$startIndex"
@@ -57,13 +56,16 @@ class MavenSingleSearch(mavenHostUrl: String, pageSize: Int) {
       request = basicRequest
         .response(asStringAlways)
         .get(searchUri)
-      response <- backend.send(request).mapError(error => NetworkSingleSearchException(searchUri.toString, error))
+      response <- backend
+        .send(request)
+        .mapError(error => NetworkSingleSearchException(searchUri.toString, error))
       _ <- ZIO.logDebug(s"received $response from $searchUri ")
-      _ <- validateResponseStatus(response).mapError(error => NetworkSingleSearchException(searchUri.toString, error))
+      _ <- validateResponseStatus(response)
+        .mapError(error => NetworkSingleSearchException(searchUri.toString, error))
       searchResults <- ZIO
         .fromEither(MavenOrgSearchResults.fromJsonText(response.body))
         .mapError(error => JsonDecodingSingleSearchException(error))
-    } yield searchResults).mapError(error => UnexpectedSingleSearchException(error))
+    } yield searchResults
   }
 
   private def validateResponseStatus(response: Response[String]): IO[UnExpectedMavenResponseError, Boolean] = {

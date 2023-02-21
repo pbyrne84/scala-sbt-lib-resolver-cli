@@ -373,11 +373,19 @@
   "fields":[{"name":"MODULE$"}]
 },
 {
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.config.ValidScalaVersionSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.maven.MavenOrgSearchResultSpec$",
   "fields":[{"name":"MODULE$"}]
 },
 {
   "name":"com.pbyrne84.github.scala.github.mavensearchcli.maven.client.MavenSearchClientSpec$",
+  "fields":[{"name":"MODULE$"}]
+},
+{
+  "name":"com.pbyrne84.github.scala.github.mavensearchcli.maven.client.MavenSingleSearchSpec$",
   "fields":[{"name":"MODULE$"}]
 },
 {
@@ -418,6 +426,14 @@
   "name":"java.io.FilePermission"
 },
 {
+  "name":"java.lang.Boolean",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.Byte",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+},
+{
   "name":"java.lang.Class",
   "methods":[
     {"name":"forName","parameterTypes":["java.lang.String"] }, 
@@ -437,6 +453,22 @@
 },
 {
   "name":"java.lang.ClassValue"
+},
+{
+  "name":"java.lang.Double",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.Float",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.Integer",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.Long",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
 },
 {
   "name":"java.lang.Module",
@@ -474,6 +506,10 @@
 },
 {
   "name":"java.lang.RuntimePermission"
+},
+{
+  "name":"java.lang.Short",
+  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
 },
 {
   "name":"java.lang.StackWalker",
@@ -881,6 +917,10 @@
 {
   "name":"org.eclipse.jetty.server.Request",
   "methods":[{"name":"getUri","parameterTypes":[] }]
+},
+{
+  "name":"org.eclipse.jetty.servlet.DefaultServlet",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
   "name":"org.eclipse.jetty.servlets.CrossOriginFilter",

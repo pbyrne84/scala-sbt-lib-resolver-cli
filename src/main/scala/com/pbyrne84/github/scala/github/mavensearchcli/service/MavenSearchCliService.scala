@@ -40,7 +40,7 @@ class MavenSearchCliService {
       scalaVersion: ValidScalaVersion
   ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, CliException, List[MavenOrgSearchResult]] = {
     for {
-      _ <- ZIO.succeed(println(s"current lookup is ${lookup}"))
+      _ <- ZIO.debug(s"current lookup is ${lookup}")
       orgConfigs <- ZIO.fromEither(lookup.getOrgConfigsForLookup(searchConfig))
       results <- ZIO
         .foreach(orgConfigs) { orgConfig =>

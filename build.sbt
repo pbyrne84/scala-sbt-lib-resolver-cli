@@ -84,5 +84,5 @@ testAndBuildAssembly := {
     .dependsOn(Test / test)
 }.value
 
-//coverage does not work on windows due to filepath issues
-//coverageEnabled := false
+//coverage does not work on windows due to filepath issues without hacking and publishing locally
+//coverageEnabled := true

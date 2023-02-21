@@ -1,6 +1,13 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.commandline
 
-import com.pbyrne84.github.scala.github.mavensearchcli.config.{DefaultScalaVersion, ScalaVersion3}
+import com.pbyrne84.github.scala.github.mavensearchcli.config.{
+  ConfigDefaults,
+  DefaultScalaVersion,
+  ScalaVersion212,
+  ScalaVersion213,
+  ScalaVersion3,
+  SearchConfig
+}
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.BaseSpec.SharedDeps
 import zio.Scope
@@ -65,6 +72,44 @@ object CommandLineArgsSpec extends BaseSpec {
           val actual = CommandLineArgs.fromCliArgs(args)
 
           assertTrue(actual == expected)
+        }
+      ),
+      suite("getScalaVersion should")(
+        test("return configured default from search config if that is required") {
+          val versions = List(
+            ScalaVersion212,
+            ScalaVersion213,
+            ScalaVersion3
+          )
+          assertTrue {
+            versions.forall { version =>
+              val actual =
+                CommandLineArgs(DefaultHotListLookupType, "", enableDebug = false, scalaVersion = DefaultScalaVersion)
+                  .getScalaVersion(
+                    SearchConfig(ConfigDefaults(defaultScalaVersion = version), 0, List.empty, List.empty)
+                  )
+
+              actual == version
+            }
+          }
+        },
+        test("return version from the command line args if not requiring default") {
+          val versions = List(
+            ScalaVersion212,
+            ScalaVersion213,
+            ScalaVersion3
+          )
+          assertTrue {
+            versions.forall { version =>
+              val actual =
+                CommandLineArgs(DefaultHotListLookupType, "", enableDebug = false, scalaVersion = version)
+                  .getScalaVersion(
+                    SearchConfig(ConfigDefaults(defaultScalaVersion = ScalaVersion212), 0, List.empty, List.empty)
+                  )
+
+              actual == version
+            }
+          }
         }
       )
     )

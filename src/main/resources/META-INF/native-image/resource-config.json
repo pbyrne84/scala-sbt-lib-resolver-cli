@@ -20,6 +20,9 @@
       "pattern":"\\Qconfig.json\\E"
     }, 
     {
+      "pattern":"\\Qjetty-dir.css\\E"
+    }, 
+    {
       "pattern":"\\Qkeystore\\E"
     }, 
     {

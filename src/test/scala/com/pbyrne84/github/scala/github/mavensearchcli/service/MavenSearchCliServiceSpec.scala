@@ -130,7 +130,7 @@ object MavenSearchCliServiceSpec extends BaseSpec {
         val results = List(rawSearchResult)
         val searchResult = FoundMavenOrgSearchResult(rawSearchResult, moduleConfig)
 
-        MavenWireMock.stubSearchModule(orgName = orgConfig.org, moduleName, results).as(List(searchResult))
+        MavenWireMock.stubSearchModule(orgName = orgConfig.org, moduleName, None, results).as(List(searchResult))
       }
       .map(_.flatten)
   }

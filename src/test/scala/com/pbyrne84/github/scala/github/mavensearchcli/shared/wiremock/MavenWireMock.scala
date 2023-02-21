@@ -25,18 +25,38 @@ object MavenWireMock {
   def stubSearchModule(
       orgName: String,
       moduleName: String,
+      maybeStartTimestampSeconds: Option[Long],
       result: List[RawSearchResult]
   ): ZIO[MavenWireMock, Throwable, Unit] = {
-    val query = generateOrgOnlyQuery(orgName, moduleName)
+    val query = maybeStartTimestampSeconds
+      .map(startTimeStampSeconds => generateTimeLimitedOrgQuery(orgName, moduleName, startTimeStampSeconds * 1000))
+      .getOrElse(generateOrgOnlyQuery(orgName, moduleName))
+
     stubSearchOrg(query, result)
+  }
+
+  private def generateTimeLimitedOrgQuery(orgName: String, moduleName: String, startTimeStampInMillis: Long): String = {
+    s"g:$orgName AND a:$moduleName AND timestamp:[$startTimeStampInMillis TO *]"
   }
 
   private def generateOrgOnlyQuery(orgName: String, moduleName: String): String = {
     s"g:$orgName AND a:$moduleName"
   }
 
-  def stubSearchOrg(expectedQuery: String, result: List[RawSearchResult]): ZIO[MavenWireMock, Throwable, Unit] =
+  private def stubSearchOrg(
+      expectedQuery: String,
+      result: List[RawSearchResult]
+  ): ZIO[MavenWireMock, Throwable, Unit] =
     zioService(_.stubSearchOrg(expectedQuery, result))
+
+  def stubInvalidResponseFormat(
+      orgName: String,
+      moduleName: String
+  ): ZIO[MavenWireMock, Throwable, Unit] = {
+    val expectedQuery = generateOrgOnlyQuery(orgName, moduleName)
+
+    zioService(_.stubInvalidResponseFormat(expectedQuery))
+  }
 
 }
 
@@ -48,7 +68,10 @@ class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
   def reset: Task[Unit] =
     testWireMock.reset
 
-  def stubSearchOrg(expectedQuery: String, result: List[RawSearchResult]): Task[Unit] = {
+  def stubSearchOrg(
+      expectedQuery: String,
+      result: List[RawSearchResult]
+  ): Task[Unit] = {
     if (result.isEmpty) {
       ZIO.attempt {
         stubSingleEntry(expectedQuery, result, List.empty, 1, 0)
@@ -115,4 +138,14 @@ class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
       |""".stripMargin
   }
 
+  def stubInvalidResponseFormat(expectedQuery: String): Task[Unit] = {
+    ZIO.attempt {
+      testWireMock.wireMock.stubFor(
+        WireMock
+          .get(WireMock.urlPathMatching("/select"))
+          .withQueryParam("q", equalTo(s"$expectedQuery"))
+          .willReturn(aResponse().withBody("{}"))
+      )
+    }
+  }
 }

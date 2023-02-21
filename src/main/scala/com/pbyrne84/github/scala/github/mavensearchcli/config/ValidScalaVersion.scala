@@ -4,7 +4,7 @@ import cats.data.{NonEmptyList, Validated}
 import com.pbyrne84.github.scala.github.mavensearchcli.error.InvalidScalaVersionException
 import io.circe.Decoder
 
-object ScalaVersion {}
+import scala.util.{Failure, Success}
 
 sealed trait ScalaVersion
 
@@ -12,18 +12,24 @@ case object DefaultScalaVersion extends ScalaVersion
 
 object ValidScalaVersion {
 
-  implicit val validScalaVersionDecoder: Decoder[ValidScalaVersion] = Decoder.decodeString.emapTry { value =>
-    getVersionFromString(value) match {
-      case Some(value) => scala.util.Success(value)
-      case None => scala.util.Failure(InvalidScalaVersionException(value))
+  implicit val validScalaVersionDecoder: Decoder[ValidScalaVersion] =
+    Decoder.decodeString.emapTry { value =>
+      getVersionFromString(value) match {
+        case Some(value) => Success(value)
+        case None => Failure(InvalidScalaVersionException(value))
+      }
     }
+
+  private def getVersionFromString(value: String): Option[ValidScalaVersion] = {
+    commandLineVersionMapping.get(value)
   }
 
-  private val commandLineVersionMapping: Map[String, ValidScalaVersion] = List(
-    ScalaVersion212,
-    ScalaVersion213,
-    ScalaVersion3
-  ).map(version => version.versionText -> version).toMap
+  private val commandLineVersionMapping: Map[String, ValidScalaVersion] =
+    List(
+      ScalaVersion212,
+      ScalaVersion213,
+      ScalaVersion3
+    ).map(version => version.versionText -> version).toMap
 
   private val validVersions: List[String] = commandLineVersionMapping.keys.toList
 
@@ -35,10 +41,6 @@ object ValidScalaVersion {
           createInvalidScalaVersionMessage(value)
         )
     }
-
-  private def getVersionFromString(value: String): Option[ValidScalaVersion] = {
-    commandLineVersionMapping.get(value)
-  }
 
   def createInvalidScalaVersionMessage(value: String): String = {
     s"Scala version '$value' is unknown, possible values are ${validVersions.mkString(", ")}"

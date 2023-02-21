@@ -32,7 +32,12 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgX"
           moduleConfig = ModuleConfig("no-results")
           scalaVersion = ScalaVersion3
-          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.scalaVersionedName(scalaVersion), List.empty)
+          _ <- MavenWireMock.stubSearchModule(
+            orgSearchTerm,
+            moduleConfig.scalaVersionedName(scalaVersion),
+            None,
+            List.empty
+          )
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -61,7 +66,12 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgY"
           moduleConfig = ModuleConfig("some-results")
           scalaVersion = ScalaVersion213
-          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.scalaVersionedName(scalaVersion), expected)
+          _ <- MavenWireMock.stubSearchModule(
+            orgSearchTerm,
+            moduleConfig.scalaVersionedName(scalaVersion),
+            None,
+            expected
+          )
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -86,7 +96,7 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgY"
           moduleConfig = ModuleConfig("some-results", moduleType = SbtPlugin)
           scalaVersion = ScalaVersion213
-          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.name, expected)
+          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.name, None, expected)
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -112,12 +122,12 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgA"
           moduleConfig = ModuleConfig("some-results")
           scalaVersion = ScalaVersion3
-          expectedQuery = generateTimeLimitedOrgQuery(
+          _ <- MavenWireMock.stubSearchModule(
             orgSearchTerm,
             moduleConfig.scalaVersionedName(scalaVersion),
-            startTimeStampInMillis = 100000
+            Some(100),
+            expectedResults
           )
-          _ <- MavenWireMock.stubSearchOrg(expectedQuery, expectedResults)
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -137,19 +147,19 @@ object MavenSearchClientSpec extends BaseSpec {
         val expected = (1 to 3).map(generateResult).toList
         for {
           _ <- reset
-          currentEpochMillis = 400000L
+          currentEpochSeconds = 400L
           withinSeconds = 150
           orgSearchTerm = "orgA"
           moduleConfig = ModuleConfig("some-results")
           scalaVersion = ScalaVersion3
           _ = when(nowProvider.getNow)
-            .thenReturn(ZIO.succeed(Instant.ofEpochMilli(currentEpochMillis)))
-          expectedQuery = generateTimeLimitedOrgQuery(
+            .thenReturn(ZIO.succeed(Instant.ofEpochMilli(currentEpochSeconds * 1000)))
+          _ <- MavenWireMock.stubSearchModule(
             orgSearchTerm,
             moduleConfig.scalaVersionedName(scalaVersion),
-            startTimeStampInMillis = currentEpochMillis - (withinSeconds * 1000)
+            Some(currentEpochSeconds - (withinSeconds)),
+            expected
           )
-          _ <- MavenWireMock.stubSearchOrg(expectedQuery, expected)
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -172,7 +182,12 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgB"
           moduleConfig = ModuleConfig("more-results")
           scalaVersion = ScalaVersion3
-          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.scalaVersionedName(scalaVersion), expected)
+          _ <- MavenWireMock.stubSearchModule(
+            orgSearchTerm,
+            moduleConfig.scalaVersionedName(scalaVersion),
+            None,
+            expected
+          )
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -197,7 +212,12 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgC"
           moduleConfig = ModuleConfig("even-more-results")
           scalaVersion = ScalaVersion3
-          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.scalaVersionedName(scalaVersion), expected)
+          _ <- MavenWireMock.stubSearchModule(
+            orgSearchTerm,
+            moduleConfig.scalaVersionedName(scalaVersion),
+            None,
+            expected
+          )
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -222,7 +242,12 @@ object MavenSearchClientSpec extends BaseSpec {
           orgSearchTerm = "orgC"
           moduleConfig = ModuleConfig("even-more-results")
           scalaVersion = ScalaVersion3
-          _ <- MavenWireMock.stubSearchModule(orgSearchTerm, moduleConfig.scalaVersionedName(scalaVersion), expected)
+          _ <- MavenWireMock.stubSearchModule(
+            orgSearchTerm,
+            moduleConfig.scalaVersionedName(scalaVersion),
+            None,
+            expected
+          )
           result <- MavenSearchClient.searchOrg(
             SearchParams(
               orgName = orgSearchTerm,
@@ -246,9 +271,5 @@ object MavenSearchClientSpec extends BaseSpec {
 
   private def generateResult(index: Int) =
     RawSearchResult("org", s"module-$index", s"version.$index")
-
-  private def generateTimeLimitedOrgQuery(orgName: String, moduleName: String, startTimeStampInMillis: Long): String = {
-    s"g:$orgName AND a:$moduleName AND timestamp:[$startTimeStampInMillis TO *]"
-  }
 
 }

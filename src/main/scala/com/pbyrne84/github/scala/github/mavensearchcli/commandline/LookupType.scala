@@ -10,8 +10,10 @@ sealed trait LookupType {
     this match {
       case DefaultHotListLookupType =>
         searchConfig.defaults.maybeHotList match {
-          case Some(defaultHotListName) => searchConfig.getHotListOrgConfigs(hotListName = defaultHotListName)
-          case None => Left(MissingHotListException("There is no default hotList configured in defaults.hotList"))
+          case None =>
+            Left(MissingHotListException("There is no default hotList configured in defaults.hotList"))
+          case Some(defaultHotListName) =>
+            searchConfig.getHotListOrgConfigs(hotListName = defaultHotListName)
         }
 
       case CustomHotListLookupType(hotListName) =>

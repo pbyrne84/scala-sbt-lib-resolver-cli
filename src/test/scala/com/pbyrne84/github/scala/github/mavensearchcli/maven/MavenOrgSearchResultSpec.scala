@@ -156,10 +156,15 @@ object MavenOrgSearchResultSpec extends BaseSpec {
 
           val org2FoundPluginModule4 =
             createFound(organisation = "org2", moduleName = "module4", SbtPlugin)
+
+          val org2FoundCompilerPluginModule4 =
+            createFound(organisation = "org2", moduleName = "module1", SbtCompilerPlugin)
+
           val org2FoundModule5 =
             createFound(organisation = "org2", moduleName = "module5", ScalaNormalScope)
 
           val results = List(
+            org2FoundCompilerPluginModule4,
             org2FoundModule5,
             org1FoundPluginModule4,
             org1NotFoundModule2,
@@ -184,6 +189,7 @@ object MavenOrgSearchResultSpec extends BaseSpec {
             org1FoundPluginModule4,
             org1FoundPluginModule5,
             org2FoundPluginModule4,
+            org2FoundCompilerPluginModule4,
             org1NotFoundModule2,
             org2NotFoundModule1,
             org2NotFoundModule2

@@ -61,8 +61,7 @@ class MavenSearchClient(pageSize: Int) {
       _ <- ZIO.logDebug(s"searching maven using $searchParams")
       headSearchResult <- MavenSingleSearch.runQuery(
         searchParams,
-        startIndex = startIndex,
-        maybeWithinSeconds = searchParams.maybeWithinSeconds
+        startIndex = startIndex
       )
       versionPatternFilteredHeadSearchResult = headSearchResult.pagedResults
         .filter(_.version.matches(searchParams.versionPattern))
@@ -112,8 +111,7 @@ class MavenSearchClient(pageSize: Int) {
       MavenSingleSearch
         .runQuery(
           searchParams,
-          currentPageOffset,
-          searchParams.maybeWithinSeconds
+          currentPageOffset
         )
         .flatMap { results =>
           val pagedResults = results.pagedResults

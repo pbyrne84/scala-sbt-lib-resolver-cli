@@ -24,6 +24,7 @@ jobs:
           source ./.github/workflows/test_and_build_fat_jar.sh
           source ./.github/workflows/build_native_image.sh
 
-          git commit -m "add fat jar and linux executable"
-          git push
+          # github wants to charge for more lfs uploads 
+          # git commit -m "add fat jar and linux executable"
+          # git push
 

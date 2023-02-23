@@ -37,6 +37,7 @@ object MavenSingleSearchSpec extends BaseSpec {
             expected = RawSearchResult("found-org", "module-name_2.13", "212")
             _ <- MavenWireMock.stubSearchModule(params.orgName, expected.moduleWithScalaVersion, None, List(expected))
             result <- MavenSingleSearch.runQuery(params, 0)
+            _ <- MavenWireMock.verifyNoUnexpectedInteractions
           } yield assertTrue(result == MavenOrgSearchResults(1, List(expected)))
         },
         test("return a search result within a time limit") {
@@ -62,6 +63,7 @@ object MavenSingleSearchSpec extends BaseSpec {
               List(expected)
             )
             result <- MavenSingleSearch.runQuery(params, 0)
+            _ <- MavenWireMock.verifyNoUnexpectedInteractions
           } yield assertTrue(result == MavenOrgSearchResults(1, List(expected)))
         },
         test("return an error when there is a networking issue") {
@@ -73,13 +75,18 @@ object MavenSingleSearchSpec extends BaseSpec {
               moduleConfig,
               ScalaVersion213,
               "*.*",
-              maybeWithinSeconds = Some(1),
+              maybeWithinSeconds = None,
               maxPagesToPaginate = 3,
-              retryCount = 5
+              retryCount = 0
+            )
+            _ <- MavenWireMock.stubServerErrorResponse(
+              params.orgName,
+              moduleConfig.name + "_" + ScalaVersion213.versionText
             )
             _ = when(nowProvider.getNow)
               .thenReturn(ZIO.succeed(Instant.ofEpochSecond(10)))
             result <- MavenSingleSearch.runQuery(params, 0).exit
+            _ <- MavenWireMock.verifyNoUnexpectedInteractions
           } yield assert(result)(fails(isSubtype[NetworkSingleSearchException](anything)))
         },
         test("return an error when there is a response that cannot be converted") {
@@ -102,6 +109,7 @@ object MavenSingleSearchSpec extends BaseSpec {
             _ = when(nowProvider.getNow)
               .thenReturn(ZIO.succeed(Instant.ofEpochSecond(10)))
             result <- MavenSingleSearch.runQuery(params, 0).exit
+            _ <- MavenWireMock.verifyNoUnexpectedInteractions
           } yield assert(result)(fails(isSubtype[JsonDecodingSingleSearchException](anything)))
         }
       )

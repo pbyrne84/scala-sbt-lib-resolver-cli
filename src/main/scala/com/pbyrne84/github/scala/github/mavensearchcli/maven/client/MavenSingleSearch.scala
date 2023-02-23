@@ -25,8 +25,12 @@ object MavenSingleSearch extends ZIOServiced[MavenSingleSearch] {
   def runQuery(
       searchParams: SearchParams,
       startIndex: Int
-  ): ZIO[NowProvider with MavenSingleSearch, SingleSearchException, MavenOrgSearchResults] =
-    serviced(_.runQuery(searchParams, startIndex))
+  ): ZIO[NowProvider with MavenSingleSearch, SingleSearchException, MavenOrgSearchResults] = {
+    // Trying to make wiremock mock for retryN just turned into a scenario rabbit hole with many hours spent.
+    // It can be done but I cannot be bothered to waste a day for this as it is very easy to get things
+    // like false positives from the complexity of trying to implement the stubbing.
+    serviced(_.runQuery(searchParams, startIndex)).retryN(searchParams.retryCount)
+  }
 }
 
 class MavenSingleSearch(mavenHostUrl: String, pageSize: Int) {

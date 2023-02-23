@@ -49,6 +49,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == MissingMavenOrgSearchResult(
             orgSearchTerm,
@@ -108,6 +109,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == FoundMavenOrgSearchResult(RawSearchResult("org", "module-3", "version.3"), moduleConfig)
         )
@@ -139,6 +141,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == FoundMavenOrgSearchResult(RawSearchResult("org", "module-3", "version.3"), moduleConfig)
         )
@@ -171,6 +174,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == FoundMavenOrgSearchResult(RawSearchResult("org", "module-3", "version.3"), moduleConfig)
         )
@@ -199,6 +203,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == FoundMavenOrgSearchResult(RawSearchResult("org", "module-4", "version.4"), moduleConfig)
         )
@@ -229,6 +234,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == FoundMavenOrgSearchResult(RawSearchResult("org", "module-9", "version.9"), moduleConfig)
         )
@@ -259,6 +265,7 @@ object MavenSearchClientSpec extends BaseSpec {
               retryCount = 0
             )
           )
+          _ <- MavenWireMock.verifyNoUnexpectedInteractions
         } yield assertTrue(
           result == MissingMavenOrgSearchResult(
             organisation = orgSearchTerm,

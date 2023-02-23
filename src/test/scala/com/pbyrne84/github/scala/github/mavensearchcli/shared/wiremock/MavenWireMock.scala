@@ -22,6 +22,17 @@ object MavenWireMock {
   def reset: ZIO[MavenWireMock, Throwable, Unit] =
     zioService(_.reset)
 
+  /** By default wiremock returns 404 when something is not stubbed which leads to not stubbing error cases. This leads
+    * to confusing log output as it can indicate a problem in a wrong place, this detects there were a 404/near matches
+    * and fails clearly enforcing a stub for failures.
+    *
+    * Also worth noting that there should be an instance of wiremock per thing mocked else near misses become absolutely
+    * useless and tests become very sucky on failure.
+    * @return
+    */
+  def verifyNoUnexpectedInteractions: ZIO[MavenWireMock, Throwable, true] =
+    zioService(_.verifyNoUnexpectedInteractions)
+
   def stubSearchModule(
       orgName: String,
       moduleName: String,
@@ -58,15 +69,24 @@ object MavenWireMock {
     zioService(_.stubInvalidResponseFormat(expectedQuery))
   }
 
+  def stubServerErrorResponse(
+      orgName: String,
+      moduleName: String
+  ): ZIO[MavenWireMock, Throwable, Unit] = {
+    val expectedQuery = generateOrgOnlyQuery(orgName, moduleName)
+
+    zioService(_.stubServerErrorResponse(expectedQuery))
+  }
+
 }
 
 class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
 
-//GET https://search.maven.org/solrsearch/select?q=g:io.circe%20AND%20a:circe-yaml_2.13&core=gav&start=0&rows=9
-// https://search.maven.org/solrsearch/select?q=g:io.circe&rows=100&wt=json
-
   def reset: Task[Unit] =
     testWireMock.reset
+
+  def verifyNoUnexpectedInteractions: Task[true] =
+    testWireMock.verifyNoUnexpectedInteractions
 
   def stubSearchOrg(
       expectedQuery: String,
@@ -148,4 +168,16 @@ class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
       )
     }
   }
+
+  def stubServerErrorResponse(expectedQuery: String): Task[Unit] = {
+    ZIO.attempt {
+      testWireMock.wireMock.stubFor(
+        WireMock
+          .get(WireMock.urlPathMatching("/select"))
+          .withQueryParam("q", equalTo(s"$expectedQuery"))
+          .willReturn(aResponse().withStatus(500).withBody("Fake internal server overload"))
+      )
+    }
+  }
+
 }

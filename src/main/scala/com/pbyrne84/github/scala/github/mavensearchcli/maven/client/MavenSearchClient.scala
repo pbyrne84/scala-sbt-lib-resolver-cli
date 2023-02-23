@@ -28,7 +28,6 @@ case class SearchParams(
     retryCount: Int
 ) {
   val versionedModuleName: String = moduleConfig.scalaVersionedName(scalaVersion)
-
 }
 
 object MavenSearchClient extends ZIOServiced[MavenSearchClient] {
@@ -41,7 +40,7 @@ object MavenSearchClient extends ZIOServiced[MavenSearchClient] {
   def searchOrg(
       searchParams: SearchParams
   ): ZIO[NowProvider with MavenSingleSearch with MavenSearchClient, CliException, MavenOrgSearchResult] =
-    serviced(_.searchOrg(searchParams)).retryN(6)
+    serviced(_.searchOrg(searchParams))
 
 }
 

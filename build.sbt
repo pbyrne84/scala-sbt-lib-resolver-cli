@@ -30,7 +30,8 @@ libraryDependencies ++= List(
   "dev.zio" %% "zio-config-typesafe" % "3.0.7",
   "com.softwaremill.sttp.client3" %% "zio" % "3.8.11",
   "dev.zio" %% "zio" % zioVersion,
-  "com.github.tomakehurst" % "wiremock" % "2.27.2" % Test,
+  "com.github.tomakehurst" % "wiremock-jre8" % "2.35.0" % Test,
+  "uk.org.devthings" %% "scala-wiremock-api" % "0.1.10" % Test,
   "org.mockito" % "mockito-core" % "5.1.1" % Test,
   "dev.zio" %% "zio-test" % zioVersion % Test,
   "dev.zio" %% "zio-test-sbt" % zioVersion % Test

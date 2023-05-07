@@ -1,13 +1,14 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.shared.wiremock
 
-import com.github.tomakehurst.wiremock.client.WireMock
-import com.github.tomakehurst.wiremock.client.WireMock.{aResponse, equalTo}
 import com.pbyrne84.github.scala.github.mavensearchcli.config.CommandLineConfig
 import com.pbyrne84.github.scala.github.mavensearchcli.maven.client.RawSearchResult
 import com.pbyrne84.github.scala.github.mavensearchcli.shared.InitialisedPorts
+import uk.org.devthings.scala.wiremockapi.remapping.RequestMethod.Get
+import uk.org.devthings.scala.wiremockapi.remapping.WireMockExpectation
 import zio.{Task, ZIO, ZLayer}
 
 object MavenWireMock {
+
   private val zioService = ZIO.serviceWithZIO[MavenWireMock]
 
   val layer: ZLayer[CommandLineConfig with InitialisedPorts, Nothing, MavenWireMock] = ZLayer {
@@ -82,6 +83,8 @@ object MavenWireMock {
 
 class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
 
+  import WireMockExpectation.ops._
+
   def reset: Task[Unit] =
     testWireMock.reset
 
@@ -116,14 +119,20 @@ class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
       currentPage: Int,
       start: Int
   ): Unit = {
-    testWireMock.wireMock.stubFor(
-      WireMock
-        .get(WireMock.urlPathMatching("/select"))
-        .withQueryParam("core", equalTo("gav"))
-        .withQueryParam("start", equalTo(start.toString))
-        .withQueryParam("rows", equalTo(pageSize.toString))
-        .withQueryParam("q", equalTo(s"$expectedQuery"))
-        .willReturn(aResponse().withBody(createFullResponse(paginatedResult, result.size, currentPage)))
+
+    import uk.org.devthings.scala.wiremockapi.remapping.WireMockExpectation.ops._
+
+    testWireMock.addExpectation(
+      WireMockExpectation.willRespondOk
+        .expectsUrl("/select".asUrlPathEquals)
+        .expectsMethod(Get)
+        .expectsQueryParams(
+          ("core" -> "gav").asEqualTo,
+          ("start" -> start.toString).asEqualTo,
+          ("rows" -> pageSize.toString).asEqualTo,
+          ("q" -> expectedQuery).asEqualTo
+        )
+        .willRespondWithBody(createFullResponse(paginatedResult, result.size, currentPage).asJsonResponse)
     )
   }
 
@@ -158,26 +167,25 @@ class MavenWireMock(testWireMock: TestWireMock, pageSize: Int) {
       |""".stripMargin
   }
 
-  def stubInvalidResponseFormat(expectedQuery: String): Task[Unit] = {
+  private def stubInvalidResponseFormat(expectedQuery: String): Task[Unit] = {
     ZIO.attempt {
-      testWireMock.wireMock.stubFor(
-        WireMock
-          .get(WireMock.urlPathMatching("/select"))
-          .withQueryParam("q", equalTo(s"$expectedQuery"))
-          .willReturn(aResponse().withBody("{}"))
+      testWireMock.addExpectation(
+        WireMockExpectation.willRespondOk
+          .expectsUrl("/select".asUrlPathEquals)
+          .expectsQueryParam(("q" -> expectedQuery).asEqualTo)
+          .willRespondWithBody("{}".asJsonResponse)
       )
     }
   }
 
-  def stubServerErrorResponse(expectedQuery: String): Task[Unit] = {
+  private def stubServerErrorResponse(expectedQuery: String): Task[Unit] = {
     ZIO.attempt {
-      testWireMock.wireMock.stubFor(
-        WireMock
-          .get(WireMock.urlPathMatching("/select"))
-          .withQueryParam("q", equalTo(s"$expectedQuery"))
-          .willReturn(aResponse().withStatus(500).withBody("Fake internal server overload"))
+      testWireMock.addExpectation(
+        WireMockExpectation.willRespondInternalServerError
+          .expectsUrl("/select".asUrlPathEquals)
+          .expectsQueryParam(("q" -> expectedQuery).asEqualTo)
+          .willRespondWithBody("Fake internal server overload".asStringResponse)
       )
     }
   }
-
 }

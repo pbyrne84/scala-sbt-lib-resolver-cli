@@ -1,7 +1,9 @@
 package com.pbyrne84.github.scala.github.mavensearchcli.shared.wiremock
 
 import com.github.tomakehurst.wiremock.WireMockServer
+import uk.org.devthings.scala.wiremockapi.remapping.WireMockExpectation
 import zio.{Task, ZIO}
+
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 
 object TestWireMock {}
@@ -10,7 +12,7 @@ class TestWireMock(val port: Int) {
 
   println(s"starting TestWireMock on port $port")
 
-  lazy val wireMock = new WireMockServer(port)
+  private lazy val wireMock = new WireMockServer(port)
 
   def reset: Task[Unit] = {
     ZIO.attempt {
@@ -40,6 +42,10 @@ class TestWireMock(val port: Int) {
         Left(new RuntimeException(nearMissErrorMessages + notMatchedErrorMessages))
       }
     }
+  }
+
+  def addExpectation(wiremockExpectation: WireMockExpectation): Unit = {
+    wireMock.stubFor(wiremockExpectation.asExpectationBuilder)
   }
 
 }

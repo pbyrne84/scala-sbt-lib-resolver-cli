@@ -3,9 +3,6 @@
   "name":"[B"
 },
 {
-  "name":"[Lcom.google.common.collect.ImmutableMapEntry;"
-},
-{
   "name":"[Ljava.lang.Class;"
 },
 {
@@ -136,6 +133,10 @@
 },
 {
   "name":"com.github.tomakehurst.wiremock.admin.RemoveStubMappingsByMetadataTask",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.github.tomakehurst.wiremock.admin.SetScenarioStateTask",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
@@ -287,6 +288,10 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"com.github.tomakehurst.wiremock.http.HttpHeadersJsonSerializer",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"com.github.tomakehurst.wiremock.http.ResponseDefinition",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
@@ -303,6 +308,7 @@
     {"name":"getHeaders","parameterTypes":[] }, 
     {"name":"getJsonBody","parameterTypes":[] }, 
     {"name":"getProxyBaseUrl","parameterTypes":[] }, 
+    {"name":"getProxyUrlPrefixToRemove","parameterTypes":[] }, 
     {"name":"getStatus","parameterTypes":[] }, 
     {"name":"getStatusMessage","parameterTypes":[] }, 
     {"name":"getTransformerParameters","parameterTypes":[] }, 
@@ -311,14 +317,12 @@
   ]
 },
 {
-  "name":"com.github.tomakehurst.wiremock.jetty92.Jetty92HttpServer",
+  "name":"com.github.tomakehurst.wiremock.jetty94.Jetty94HttpServer",
   "methods":[{"name":"<init>","parameterTypes":["com.github.tomakehurst.wiremock.core.Options","com.github.tomakehurst.wiremock.http.AdminRequestHandler","com.github.tomakehurst.wiremock.http.StubRequestHandler"] }]
 },
 {
-  "name":"com.github.tomakehurst.wiremock.jetty94.Jetty94HttpServer"
-},
-{
-  "name":"com.github.tomakehurst.wiremock.jetty94.WritableFileOrClasspathKeyStoreSource"
+  "name":"com.github.tomakehurst.wiremock.jetty94.WritableFileOrClasspathKeyStoreSource",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String","char[]"] }]
 },
 {
   "name":"com.github.tomakehurst.wiremock.matching.AnythingPattern",
@@ -326,10 +330,6 @@
 },
 {
   "name":"com.github.tomakehurst.wiremock.matching.EqualToPattern",
-  "queryAllDeclaredConstructors":true
-},
-{
-  "name":"com.github.tomakehurst.wiremock.matching.RegexPattern",
   "queryAllDeclaredConstructors":true
 },
 {
@@ -476,10 +476,16 @@
     {"name":"addExports","parameterTypes":["java.lang.String","java.lang.Module"] }, 
     {"name":"addReads","parameterTypes":["java.lang.Module"] }, 
     {"name":"canRead","parameterTypes":["java.lang.Module"] }, 
+    {"name":"getLayer","parameterTypes":[] }, 
+    {"name":"getName","parameterTypes":[] }, 
     {"name":"isExported","parameterTypes":["java.lang.String"] }, 
     {"name":"isExported","parameterTypes":["java.lang.String","java.lang.Module"] }, 
     {"name":"isOpen","parameterTypes":["java.lang.String","java.lang.Module"] }
   ]
+},
+{
+  "name":"java.lang.ModuleLayer",
+  "methods":[{"name":"configuration","parameterTypes":[] }]
 },
 {
   "name":"java.lang.Object",
@@ -577,6 +583,18 @@
     {"name":"getInputArguments","parameterTypes":[] }, 
     {"name":"getUptime","parameterTypes":[] }
   ]
+},
+{
+  "name":"java.lang.module.Configuration",
+  "methods":[{"name":"findModule","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.module.ModuleReference",
+  "methods":[{"name":"location","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.module.ResolvedModule",
+  "methods":[{"name":"reference","parameterTypes":[] }]
 },
 {
   "name":"java.lang.reflect.AccessibleObject",
@@ -893,45 +911,26 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"org.apache.commons.logging.LogFactory"
-},
-{
-  "name":"org.apache.commons.logging.impl.Jdk14Logger",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]
-},
-{
-  "name":"org.apache.commons.logging.impl.Log4JLogger"
-},
-{
-  "name":"org.apache.commons.logging.impl.LogFactoryImpl",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.commons.logging.impl.WeakHashtable",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
   "name":"org.eclipse.jetty.http.pathmap.PathSpecSet",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"org.eclipse.jetty.server.Request",
-  "methods":[{"name":"getUri","parameterTypes":[] }]
-},
-{
-  "name":"org.eclipse.jetty.servlet.DefaultServlet",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
+  "name":"org.eclipse.jetty.server.handler.gzip.GzipHandler",
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"addIncludedMethods","parameterTypes":["java.lang.String[]"] }
+  ]
 },
 {
   "name":"org.eclipse.jetty.servlets.CrossOriginFilter",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"org.eclipse.jetty.servlets.gzip.GzipHandler",
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"addIncludedMethods","parameterTypes":["java.lang.String[]"] }
-  ]
+  "name":"org.eclipse.jetty.servlets.gzip.GzipHandler"
+},
+{
+  "name":"org.eclipse.jetty.util.ModuleLocation",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
   "name":"org.eclipse.jetty.util.RegexSet",
